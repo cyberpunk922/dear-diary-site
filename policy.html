@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Privacy Policy – Dear Diary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy Policy for Dear Diary – a private, offline-first journaling app for Android.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        main {
+            padding-top: 2.5rem;
+            padding-bottom: 3.5rem;
+        }
+        .policy-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .policy-container h1 {
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+        }
+        .policy-meta {
+            color: #b2b8c8;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+        .policy-container h2 {
+            margin-top: 2rem;
+            margin-bottom: 0.7rem;
+            font-size: 1.2rem;
+        }
+        .policy-container p {
+            color: #d2d6e3;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .policy-container ul {
+            color: #d2d6e3;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .policy-container li {
+            margin-bottom: 0.3rem;
+        }
+        .pill-note {
+            display: inline-block;
+            border-radius: 999px;
+            padding: 0.15rem 0.65rem;
+            border: 1px solid rgba(242, 167, 107, 0.7);
+            color: #f2a76b;
+            font-size: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+        a {
+            color: #f2a76b;
+        }
+    </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <div class="logo-mark">DD</div>
+            <span class="logo-text">Dear Diary</span>
+        </div>
+        <nav class="nav">
+            <a href="index.html#features">Features</a>
+            <a href="index.html#privacy">Privacy</a>
+            <a href="index.html#download">Download</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Open navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<main>
+    <div class="policy-container">
+        <span class="pill-note">Privacy first. On-device only.</span>
+        <h1>Privacy Policy</h1>
+        <p class="policy-meta">
+            Last updated: 24 November 2025
+        </p>
+
+        <p>
+            This Privacy Policy explains how the Dear Diary Android application (“Dear Diary”, “we”, “our”, or “us”)
+            handles your information. Dear Diary is designed to be a private, offline-first personal journal.
+            Your data stays on your device. We do not run servers, we do not collect analytics, and we never sell your data.
+        </p>
+
+        <h2>1. Overview</h2>
+        <p>
+            Dear Diary operates entirely on your Android device. All diary entries, media attachments, and settings are
+            stored locally using an encrypted database and encrypted preferences. The app does not require an account,
+            does not connect to a remote server, and does not transmit your personal data to us or third parties.
+        </p>
+
+        <h2>2. Data we store locally</h2>
+        <p>
+            Dear Diary stores the following types of information locally on your device:
+        </p>
+        <ul>
+            <li><strong>Diary entries:</strong> Text you write in your logs, including titles, body text, and timestamps.</li>
+            <li><strong>Attachments:</strong> Photos, videos, audio recordings, and files you intentionally attach to your entries.</li>
+            <li><strong>App settings:</strong> Preferences such as theme settings, log beautifier toggle, daily reminder time, narration settings, and security options (e.g. biometric unlock enabled/disabled).</li>
+            <li><strong>Derived metadata:</strong> Information such as entry dates, streak counts, and other locally computed fields to support app features like calendar views and streaks.</li>
+        </ul>
+
+        <p>
+            All of this data is stored and processed exclusively on your device. We do not have access to it.
+        </p>
+
+        <h2>3. No data collection, no tracking, no analytics</h2>
+        <p>
+            Dear Diary does <strong>not</strong>:
+        </p>
+        <ul>
+            <li>Collect personal data on remote servers.</li>
+            <li>Use any third-party analytics or tracking SDKs.</li>
+            <li>Display advertising or share data with advertisers.</li>
+            <li>Use crash reporting services that upload your entries or personal content.</li>
+        </ul>
+        <p>
+            Because we do not operate backend servers, there is no account to create and no online profile associated with your usage.
+        </p>
+
+        <h2>4. Local storage and encryption</h2>
+        <p>
+            Dear Diary uses industry-standard encryption mechanisms on your device:
+        </p>
+        <ul>
+            <li><strong>SQLCipher-encrypted database:</strong> Your diary entries and related structured data are stored in a database encrypted using SQLCipher.</li>
+            <li><strong>EncryptedSharedPreferences:</strong> App configuration and sensitive settings are stored using Android’s <em>EncryptedSharedPreferences</em> API where supported.</li>
+            <li><strong>Biometric unlock:</strong> Where available on your device, Dear Diary allows you to protect access to the app using biometric authentication (e.g. fingerprint or face unlock) and/or device credentials.</li>
+        </ul>
+        <p>
+            The cryptographic keys used for encryption are stored on your device, managed by the Android system. We do not have access to these keys.
+        </p>
+
+        <h2>5. Permissions and how they are used</h2>
+        <p>
+            Dear Diary requests only the permissions required for its core features. Permissions are used solely for the purposes described below and only when initiated by you.
+        </p>
+
+        <h3>5.1 Camera</h3>
+        <p>
+            <strong>Purpose:</strong> To allow you to capture photos or videos and attach them to diary entries.<br>
+            <strong>When used:</strong> Only when you explicitly choose to take a photo or record a video from within the app.<br>
+            <strong>Data handling:</strong> Captured media is stored locally on your device and linked to your entries. It is not uploaded to any server by the app.
+        </p>
+
+        <h3>5.2 Microphone</h3>
+        <p>
+            <strong>Purpose:</strong> To allow you to record audio notes and attach them to your entries, or to support optional narration features where applicable.<br>
+            <strong>When used:</strong> Only when you explicitly choose to start an audio recording or use voice features in the app.<br>
+            <strong>Data handling:</strong> Audio recordings are stored locally on your device, within the app’s storage. They are not transmitted to us.
+        </p>
+
+        <h3>5.3 Storage / Files (Photos, Media, and Files)</h3>
+        <p>
+            <strong>Purpose:</strong> To allow you to attach existing photos, videos, audio files, or documents from your device to your diary entries.<br>
+            <strong>When used:</strong> Only when you manually select a file or media item to attach. The app does not scan your device or access files without your action.<br>
+            <strong>Data handling:</strong> Selected media is referenced or copied into the app’s local storage and is never transmitted off your device by Dear Diary.
+        </p>
+
+        <h3>5.4 Notifications</h3>
+        <p>
+            <strong>Purpose:</strong> To send optional reminders (e.g. daily journaling reminders) if you enable them in the app settings.<br>
+            <strong>When used:</strong> Only after you grant notification permission and enable reminders.<br>
+            <strong>Data handling:</strong> Reminder schedules are stored locally and do not involve any server communication.
+        </p>
+
+        <h3>5.5 Biometric / Device credentials</h3>
+        <p>
+            <strong>Purpose:</strong> To protect access to Dear Diary using your device’s biometric or lock screen credentials when you enable this feature in the app settings.<br>
+            <strong>When used:</strong> Each time you open the app (or resume from background) if biometric unlock is enabled.<br>
+            <strong>Data handling:</strong> Biometric checks are handled by the Android system. Dear Diary does not have access to your biometric data.
+        </p>
+
+        <h2>6. Data retention and deletion</h2>
+        <p>
+            Because all data is stored locally:
+        </p>
+        <ul>
+            <li><strong>Retention:</strong> Your data is retained on your device for as long as the app remains installed and you do not manually delete entries or app data.</li>
+            <li><strong>Delete entries:</strong> You can delete individual diary entries or attachments from within the app. Once deleted, they are removed from the local database and (where applicable) from the app’s local storage area.</li>
+            <li><strong>Delete all data:</strong> You can delete all data by uninstalling the app or by clearing the app’s data from your device settings. We do not keep any backups.</li>
+        </ul>
+
+        <h2>7. Children’s privacy</h2>
+        <p>
+            Dear Diary is a general-purpose journaling app and is not specifically directed at children under 13. We do not knowingly collect any information from children, and we do not run servers or create online accounts.
+        </p>
+
+        <h2>8. Third-party services</h2>
+        <p>
+            Dear Diary does not integrate any third-party services that receive your diary content or personal data. There are:
+        </p>
+        <ul>
+            <li>No third-party analytics.</li>
+            <li>No ad networks.</li>
+            <li>No social media SDKs.</li>
+            <li>No remote crash reporting that uploads your entries.</li>
+        </ul>
+
+        <h2>9. Your rights and control</h2>
+        <p>
+            Because we do not receive or store your personal data on our servers, there is no server-side profile to access, export, or erase. All of your data is stored on your device, and you are in full control of it.
+        </p>
+        <ul>
+            <li>You can view, edit, and delete your entries directly in the app.</li>
+            <li>You can uninstall the app at any time to remove all data stored by Dear Diary on your device.</li>
+        </ul>
+        <p>
+            If you have any concerns or questions about how Dear Diary handles your data, you can contact us at the email address listed below.
+        </p>
+
+        <h2>10. Security practices</h2>
+        <p>
+            We take the following measures to help keep your data secure on your device:
+        </p>
+        <ul>
+            <li>Using <strong>SQLCipher</strong> to encrypt the app’s local database.</li>
+            <li>Using <strong>EncryptedSharedPreferences</strong> (where supported) for sensitive configuration and settings.</li>
+            <li>Supporting <strong>biometric unlock</strong> and/or device credentials to restrict access to the app’s contents.</li>
+            <li>Minimizing requested permissions and only accessing device features when you explicitly initiate the action (e.g. attaching media).</li>
+        </ul>
+        <p>
+            Please note that the overall security of your data also depends on how you protect your device (e.g. lock screen PIN, device encryption, not sharing your device with others).
+        </p>
+
+        <h2>11. International users</h2>
+        <p>
+            Dear Diary does not transfer any of your data across borders because all data is stored locally on your device and never uploaded to our servers.
+        </p>
+
+        <h2>12. Changes to this Privacy Policy</h2>
+        <p>
+            We may update this Privacy Policy from time to time, for example to reflect changes in the app, legal or regulatory updates, or improvements to our security practices. When we do, we will update the “Last updated” date at the top of this document.
+        </p>
+        <p>
+            The version of the Privacy Policy bundled with the app (or linked from the app) will always be considered the current version.
+        </p>
+
+        <h2>13. Contact</h2>
+        <p>
+            If you have any questions, feedback, or concerns about this Privacy Policy or Dear Diary’s privacy practices, please contact:
+        </p>
+        <p>
+            <strong>Email:</strong> <a href="mailto:support@deardiary.app">support@deardiary.app</a>
+        </p>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-left">
+            <span class="footer-logo">Dear Diary</span>
+            <span class="footer-copy">© <span id="year"></span> Dear Diary. All rights reserved.</span>
+        </div>
+        <div class="footer-links">
+            <a href="policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms &amp; Conditions</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav');
+    navToggle.addEventListener('click', () => {
+        nav.classList.toggle('nav-open');
+        navToggle.classList.toggle('nav-open');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

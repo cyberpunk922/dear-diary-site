@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dear Diary – Private, Beautiful Personal Journal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dear Diary is a beautifully designed, privacy-first personal journal app for Android. Your thoughts stay on your device, encrypted and secure.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <div class="logo-mark">DD</div>
+            <span class="logo-text">Dear Diary</span>
+        </div>
+        <nav class="nav">
+            <a href="#features">Features</a>
+            <a href="#privacy">Privacy</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="#about">About</a>
+            <a href="#download" class="nav-cta">Get the App</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Open navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<main>
+    <!-- Hero -->
+    <section class="hero" id="top">
+        <div class="container hero-inner">
+            <div class="hero-text">
+                <h1>Your private thoughts, beautifully protected.</h1>
+                <p class="hero-subtitle">
+                    Dear Diary is a modern, offline-first journal for Android.  
+                    Encrypted on-device, biometric unlock, and a calming writing experience.
+                </p>
+                <div class="hero-actions">
+                    <a href="#download" class="btn primary">Coming soon on Google Play</a>
+                    <a href="#privacy" class="btn ghost">How we protect your data</a>
+                </div>
+                <ul class="hero-highlights">
+                    <li>No accounts. No cloud. No tracking.</li>
+                    <li>SQLCipher-encrypted database + EncryptedSharedPreferences</li>
+                    <li>Biometric unlock for quick, secure access</li>
+                </ul>
+            </div>
+            <div class="hero-preview">
+                <div class="phone-frame">
+                    <div class="phone-status-bar">
+                        <span class="status-time">21:07</span>
+                        <span class="status-dots">•••</span>
+                    </div>
+                    <div class="phone-screen">
+                        <div class="preview-header">
+                            <span class="preview-app-name">Dear Diary</span>
+                            <span class="preview-pill">Today</span>
+                        </div>
+                        <div class="preview-entry">
+                            <h2>Just for me.</h2>
+                            <p>
+                                A quiet place to capture my day, my thoughts, and the little
+                                moments that matter — safe on my own device.
+                            </p>
+                            <div class="preview-tags">
+                                <span>Offline</span>
+                                <span>Encrypted</span>
+                                <span>Calm</span>
+                            </div>
+                        </div>
+                        <div class="preview-footer">
+                            <span class="preview-lock">🔒 On-device only</span>
+                            <span class="preview-bio">🔑 Biometric unlock</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="features">
+        <div class="container">
+            <header class="section-header">
+                <h2>Designed for real journaling</h2>
+                <p>Everything you need to build a gentle daily writing habit — without distractions.</p>
+            </header>
+            <div class="grid features-grid">
+                <div class="card feature-card">
+                    <h3>Beautiful writing space</h3>
+                    <p>
+                        A clean, focused editor optimized for long-form writing, reflections,
+                        and daily entries. No clutter, just your words.
+                    </p>
+                </div>
+                <div class="card feature-card">
+                    <h3>Rich entries</h3>
+                    <p>
+                        Attach photos, videos, audio notes, and files only when you choose to.
+                        Everything stays on your device.
+                    </p>
+                </div>
+                <div class="card feature-card">
+                    <h3>Smart calendar & streaks</h3>
+                    <p>
+                        Browse your memories with a friendly calendar, highlights, and streaks
+                        that gently encourage consistency.
+                    </p>
+                </div>
+                <div class="card feature-card">
+                    <h3>Log beautifier</h3>
+                    <p>
+                        Optional automatic formatting to make your entries easier to read,
+                        with thoughtful spacing between text and media.
+                    </p>
+                </div>
+                <div class="card feature-card">
+                    <h3>Quick notes</h3>
+                    <p>
+                        Capture fast ideas, quotes, and reminders separately from your main
+                        diary entries — all in one place.
+                    </p>
+                </div>
+                <div class="card feature-card">
+                    <h3>No account required</h3>
+                    <p>
+                        Install, start writing, and that’s it. Dear Diary never asks you to sign up,
+                        log in, or share your data.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy-focused highlights -->
+    <section class="section section-alt" id="privacy">
+        <div class="container">
+            <header class="section-header">
+                <h2>Privacy first. By design.</h2>
+                <p>Your diary belongs to you — and only you.</p>
+            </header>
+            <div class="privacy-layout">
+                <div class="privacy-summary card">
+                    <h3>Local-only storage</h3>
+                    <p>
+                        Dear Diary stores all data locally on your Android device.
+                        There are no servers, no cloud backups, and no data uploads.
+                    </p>
+                    <ul class="checklist">
+                        <li>SQLCipher-encrypted local database</li>
+                        <li>EncryptedSharedPreferences for settings</li>
+                        <li>Biometric unlock support</li>
+                        <li>No analytics. No tracking. No ads.</li>
+                    </ul>
+                    <a href="policy.html" class="inline-link">Read full Privacy Policy →</a>
+                </div>
+                <div class="privacy-points">
+                    <div class="privacy-point">
+                        <h4>On-device only</h4>
+                        <p>
+                            Your entries are never transmitted off your device.
+                            Dear Diary works fully offline.
+                        </p>
+                    </div>
+                    <div class="privacy-point">
+                        <h4>Intentional permissions</h4>
+                        <p>
+                            The app only requests camera, microphone, and file access
+                            when you choose to attach media to a log.
+                        </p>
+                    </div>
+                    <div class="privacy-point">
+                        <h4>You're in control</h4>
+                        <p>
+                            Delete entries at any time, or uninstall the app to remove
+                            all data from your device.
+                        </p>
+                    </div>
+                    <div class="privacy-point">
+                        <h4>Secure by default</h4>
+                        <p>
+                            Encryption and biometric unlock are built-in to keep your
+                            private thoughts safe from prying eyes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="section" id="screenshots">
+        <div class="container">
+            <header class="section-header">
+                <h2>App preview</h2>
+                <p>These placeholders will be replaced with real screenshots from the app.</p>
+            </header>
+            <div class="grid screenshots-grid">
+                <div class="card screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <span>Home / Dashboard</span>
+                    </div>
+                </div>
+                <div class="card screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <span>Add Log Screen</span>
+                    </div>
+                </div>
+                <div class="card screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <span>Calendar View</span>
+                    </div>
+                </div>
+                <div class="card screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <span>Settings & Privacy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section section-alt" id="about">
+        <div class="container about-layout">
+            <div class="about-text">
+                <header class="section-header section-header-left">
+                    <h2>About Dear Diary</h2>
+                    <p>A personal project, crafted for people who care about privacy and design.</p>
+                </header>
+                <p>
+                    Dear Diary started with a simple idea: a journaling app that feels calm and
+                    delightful to use, without ever turning your private thoughts into someone
+                    else’s data.
+                </p>
+                <p>
+                    The app focuses on thoughtful typography, spacing, and gentle animations,
+                    combined with strong on-device security. No logins, no social features, no
+                    feed — just a quiet space for you.
+                </p>
+                <p>
+                    Whether you’re tracking your mood, recording daily events, or writing long
+                    reflections, Dear Diary is built to stay out of your way and keep your
+                    memories safe.
+                </p>
+            </div>
+            <div class="about-highlight card">
+                <h3>Key principles</h3>
+                <ul class="checklist">
+                    <li>Privacy and security over growth.</li>
+                    <li>Calm, minimal interface.</li>
+                    <li>Useful features only — no clutter.</li>
+                    <li>Respect for your time and attention.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download -->
+    <section class="section" id="download">
+        <div class="container download-section">
+            <header class="section-header">
+                <h2>Get Dear Diary</h2>
+                <p>Currently in development. Google Play link will appear here when published.</p>
+            </header>
+            <div class="store-badges">
+                <!-- Placeholder Google Play button -->
+                <a href="#" class="store-badge disabled" aria-disabled="true">
+                    <div class="store-icon">▶</div>
+                    <div class="store-text">
+                        <span class="store-small">Coming soon on</span>
+                        <span class="store-big">Google Play</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section-alt" id="contact">
+        <div class="container contact-layout">
+            <div>
+                <header class="section-header section-header-left">
+                    <h2>Contact</h2>
+                    <p>Have feedback, ideas, or found a bug? I’d love to hear from you.</p>
+                </header>
+                <p>
+                    For support or questions about Dear Diary, please reach out anytime.
+                </p>
+                <p class="contact-email">
+                    Email: <a href="mailto:support@deardiary.app">support@deardiary.app</a>
+                </p>
+            </div>
+            <div class="card contact-note">
+                <p>
+                    This is a solo-built app. Thoughtful feedback and suggestions directly
+                    help shape the future of Dear Diary.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-left">
+            <span class="footer-logo">Dear Diary</span>
+            <span class="footer-copy">© <span id="year"></span> Dear Diary. All rights reserved.</span>
+        </div>
+        <div class="footer-links">
+            <a href="policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms &amp; Conditions</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Simple mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav');
+    navToggle.addEventListener('click', () => {
+        nav.classList.toggle('nav-open');
+        navToggle.classList.toggle('nav-open');
+    });
+
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
