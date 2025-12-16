@@ -1,332 +1,889 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="dark">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Dear Diary – Private, Beautiful Personal Journal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dear Diary is a beautifully designed, privacy-first personal journal app for Android. Your thoughts stay on your device, encrypted and secure.">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Dear Diary — Private Offline Journal</title>
+  <meta name="description"
+    content="Dear Diary is a private, offline-first journaling app with encrypted local storage, biometric lock, mood tracking, quick notes, and user-controlled exports." />
+  <link rel="icon" href="assets/img/logo.png" type="image/png" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/premium.css" />
+  <link rel="stylesheet" href="assets/css/overhaul.css" />
 </head>
+
 <body>
-<header class="site-header">
-    <div class="container header-inner">
-        <div class="logo">
-            <div class="logo-mark">DD</div>
-            <span class="logo-text">Dear Diary</span>
-        </div>
-        <nav class="nav">
-            <a href="#features">Features</a>
-            <a href="#privacy">Privacy</a>
-            <a href="#screenshots">Screenshots</a>
-            <a href="#about">About</a>
-            <a href="#download" class="nav-cta">Get the App</a>
-        </nav>
-        <button class="nav-toggle" aria-label="Open navigation">
-            <span></span><span></span><span></span>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="bg-decor" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Mobile drawer backdrop -->
+  <div class="scrim" data-nav-scrim hidden></div>
+
+  <header class="header">
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html" aria-label="Dear Diary Home">
+          <img src="assets/img/logo.png" alt="Dear Diary logo" />
+          <div class="brand-title">
+            <strong>Dear Diary</strong>
+            <span>Private • Offline-first • Encrypted</span>
+          </div>
+        </a>
+
+        <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+          <span aria-hidden="true">☰</span>
         </button>
+
+        <div class="nav-links" role="navigation">
+          <a href="#features">Features</a>
+          <a href="#screenshots">Screenshots</a>
+          <a href="#security">Privacy & Security</a>
+          <a href="#faq">FAQ</a>
+          <a href="#play">Google Play</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Support</a>
+        </div>
+
+        <div class="nav-actions">
+          <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme">
+            <span data-theme-icon aria-hidden="true">🌙</span>
+          </button>
+          <a class="btn btn-primary" href="#play">Coming soon</a>
+        </div>
+      </nav>
+
+      <!-- Mobile drawer -->
+      <div class="drawer" data-nav-drawer aria-hidden="true">
+        <div class="drawer-top">
+          <div class="drawer-title">
+            <strong>Menu</strong>
+            <span class="muted">Navigate quickly</span>
+          </div>
+          <button class="icon-btn" type="button" data-nav-close aria-label="Close menu">
+            <span aria-hidden="true">✕</span>
+          </button>
+        </div>
+
+        <div class="drawer-links" aria-label="Mobile navigation">
+          <a href="#features">Features</a>
+          <a href="#screenshots">Screenshots</a>
+          <a href="#security">Privacy & Security</a>
+          <a href="#faq">FAQ</a>
+          <a href="#play">Google Play</a>
+          <hr class="hr" />
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Support</a>
+        </div>
+
+        <div class="drawer-actions">
+          <button class="btn" type="button" data-theme-toggle>
+            <span>Theme: <b data-theme-label>Dark</b></span>
+          </button>
+          <a class="btn btn-primary" href="#play">Coming soon</a>
+        </div>
+      </div>
     </div>
-</header>
+  </header>
 
-<main>
-    <!-- Hero -->
-    <section class="hero" id="top">
-        <div class="container hero-inner">
-            <div class="hero-text">
-                <h1>Your private thoughts, beautifully protected.</h1>
-                <p class="hero-subtitle">
-                    Dear Diary is a modern, offline-first journal for Android.  
-                    Encrypted on-device, biometric unlock, and a calming writing experience.
-                </p>
-                <div class="hero-actions">
-                    <a href="#download" class="btn primary">Coming soon on Google Play</a>
-                    <a href="#privacy" class="btn ghost">How we protect your data</a>
-                </div>
-                <ul class="hero-highlights">
-                    <li>No accounts. No cloud. No tracking.</li>
-                    <li>SQLCipher-encrypted database + EncryptedSharedPreferences</li>
-                    <li>Biometric unlock for quick, secure access</li>
-                </ul>
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy" data-reveal>
+            <div class="kicker">
+              <span aria-hidden="true">🔒</span>
+              <span>Privacy-first journaling — no cloud required</span>
             </div>
-            <div class="hero-preview">
-                <div class="phone-frame">
-                    <div class="phone-status-bar">
-                        <span class="status-time">21:07</span>
-                        <span class="status-dots">•••</span>
-                    </div>
-                    <div class="phone-screen">
-                        <div class="preview-header">
-                            <span class="preview-app-name">Dear Diary</span>
-                            <span class="preview-pill">Today</span>
-                        </div>
-                        <div class="preview-entry">
-                            <h2>Just for me.</h2>
-                            <p>
-                                A quiet place to capture my day, my thoughts, and the little
-                                moments that matter — safe on my own device.
-                            </p>
-                            <div class="preview-tags">
-                                <span>Offline</span>
-                                <span>Encrypted</span>
-                                <span>Calm</span>
-                            </div>
-                        </div>
-                        <div class="preview-footer">
-                            <span class="preview-lock">🔒 On-device only</span>
-                            <span class="preview-bio">🔑 Biometric unlock</span>
-                        </div>
-                    </div>
-                </div>
+
+            <h1 class="h1">
+              Your journal, your device —
+              <span class="grad-text">private by design</span>.
+            </h1>
+
+            <p class="sub">
+              Capture real life with text, photos, videos, and audio — with local encryption,
+              biometric/password lock, mood tracking, quick notes, and exports you control.
+            </p>
+
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#screenshots">See screenshots</a>
+              <a class="btn" href="#features">Explore features</a>
+              <a class="btn btn-ghost" href="privacy.html">Privacy policy →</a>
             </div>
+
+            <div class="hero-badges" aria-label="Highlights">
+              <span class="badge">Offline-first</span>
+              <span class="badge">Encrypted locally</span>
+              <span class="badge">Biometric lock</span>
+              <span class="badge">PDF/CSV/JSON export</span>
+            </div>
+          </div>
+
+          <!-- HERO visual -->
+          <div class="hero-visual" data-reveal aria-label="App preview">
+            <div class="phone">
+              <div class="phone-frame" aria-hidden="true"></div>
+              <img class="phone-shot" src="assets/img/screenshots/addlogscreen.png"
+                alt="Dear Diary dashboard screenshot" loading="lazy" />
+            </div>
+
+            <div class="hero-glow" aria-hidden="true"></div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Features -->
-    <section class="section" id="features">
-        <div class="container">
-            <header class="section-header">
-                <h2>Designed for real journaling</h2>
-                <p>Everything you need to build a gentle daily writing habit — without distractions.</p>
-            </header>
-            <div class="grid features-grid">
-                <div class="card feature-card">
-                    <h3>Beautiful writing space</h3>
-                    <p>
-                        A clean, focused editor optimized for long-form writing, reflections,
-                        and daily entries. No clutter, just your words.
-                    </p>
-                </div>
-                <div class="card feature-card">
-                    <h3>Rich entries</h3>
-                    <p>
-                        Attach photos, videos, audio notes, and files only when you choose to.
-                        Everything stays on your device.
-                    </p>
-                </div>
-                <div class="card feature-card">
-                    <h3>Smart calendar & streaks</h3>
-                    <p>
-                        Browse your memories with a friendly calendar, highlights, and streaks
-                        that gently encourage consistency.
-                    </p>
-                </div>
-                <div class="card feature-card">
-                    <h3>Log beautifier</h3>
-                    <p>
-                        Optional automatic formatting to make your entries easier to read,
-                        with thoughtful spacing between text and media.
-                    </p>
-                </div>
-                <div class="card feature-card">
-                    <h3>Quick notes</h3>
-                    <p>
-                        Capture fast ideas, quotes, and reminders separately from your main
-                        diary entries — all in one place.
-                    </p>
-                </div>
-                <div class="card feature-card">
-                    <h3>No account required</h3>
-                    <p>
-                        Install, start writing, and that’s it. Dear Diary never asks you to sign up,
-                        log in, or share your data.
-                    </p>
-                </div>
-            </div>
+    <!-- STATS SECTION -->
+    <section class="stats-section section" data-smooth-reveal>
+      <div class="container">
+        <div class="stats-grid" data-stagger>
+          <div class="stat-card">
+            <div class="stat-number" data-count="100">0</div>
+            <div class="stat-label">Privacy First</div>
+            <div class="stat-description">No data ever leaves your device</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-count="256">0</div>
+            <div class="stat-label">Bit Encryption</div>
+            <div class="stat-description">Military-grade SQLCipher security</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-count="0">0</div>
+            <div class="stat-label">Cloud Accounts</div>
+            <div class="stat-description">Completely offline by design</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-count="100">0</div>
+            <div class="stat-label">Your Control</div>
+            <div class="stat-description">You own all your content</div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Privacy-focused highlights -->
-    <section class="section section-alt" id="privacy">
-        <div class="container">
-            <header class="section-header">
-                <h2>Privacy first. By design.</h2>
-                <p>Your diary belongs to you — and only you.</p>
-            </header>
-            <div class="privacy-layout">
-                <div class="privacy-summary card">
-                    <h3>Local-only storage</h3>
-                    <p>
-                        Dear Diary stores all data locally on your Android device.
-                        There are no servers, no cloud backups, and no data uploads.
-                    </p>
-                    <ul class="checklist">
-                        <li>SQLCipher-encrypted local database</li>
-                        <li>EncryptedSharedPreferences for settings</li>
-                        <li>Biometric unlock support</li>
-                        <li>No analytics. No tracking. No ads.</li>
+    <!-- SCREENSHOTS -->
+    <section id="screenshots" class="section">
+      <div class="container">
+        <div class="section-title" data-reveal>
+          <div>
+            <h2>Screenshots</h2>
+            <p>Clean, calm UI — designed for daily use.</p>
+          </div>
+          <div class="section-actions">
+            <button class="btn" type="button" data-open-gallery>View all</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="showcase-wrap" data-reveal>
+        <div class="showcase card" data-slider aria-label="App screenshots carousel">
+          <div class="showcase-top">
+            <div class="showcase-title">
+              <strong>Dear Diary — in motion</strong>
+              <span>Auto slides • Pause on hover • Swipe on touch</span>
+            </div>
+            <div class="slider-controls">
+              <button class="ctrl" type="button" data-prev aria-label="Previous slide">‹</button>
+              <button class="ctrl" type="button" data-next aria-label="Next slide">›</button>
+            </div>
+          </div>
+
+          <div class="viewport showcase-viewport">
+            <div class="track" data-slider-track>
+              <!-- Slide 1 -->
+              <section class="showcase-slide" data-slide aria-hidden="false">
+                <div class="shot-split">
+                  <div class="shot-stage">
+                    <img src="assets/img/screenshots/dashboardscreen.png" alt="Dashboard screen" data-gallery-item
+                      loading="lazy" />
+                    <button class="shot-zoom" type="button" aria-label="View full screenshot" data-zoom>↗</button>
+                  </div>
+                  <div class="shot-copy">
+                    <div class="shot-eyebrow">Dashboard</div>
+                    <h3>Open to warmth, not noise.</h3>
+                    <p>A calm home that invites you to write—quick access to diary, mood, calendar, and reminders.</p>
+                    <ul class="shot-points">
+                      <li><b>Instant start:</b> capture a thought in seconds</li>
+                      <li><b>Feels personal:</b> greeting + your recent memories</li>
+                      <li><b>Built for habit:</b> streak + reminders in view</li>
                     </ul>
-                    <a href="policy.html" class="inline-link">Read full Privacy Policy →</a>
+                    <div class="chips">
+                      <span class="chip">Fast capture</span>
+                      <span class="chip">Streaks</span>
+                      <span class="chip">Offline-first</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="privacy-points">
-                    <div class="privacy-point">
-                        <h4>On-device only</h4>
-                        <p>
-                            Your entries are never transmitted off your device.
-                            Dear Diary works fully offline.
-                        </p>
+              </section>
+
+              <!-- Slide 2 (Diary + Narration on same screen) -->
+              <section class="showcase-slide" data-slide aria-hidden="true">
+                <div class="shot-split">
+                  <div class="shot-stage">
+                    <img src="assets/img/screenshots/addlogscreen.png" alt="Add log screen" data-gallery-item
+                      loading="lazy" />
+                    <button class="shot-zoom" type="button" aria-label="View full screenshot" data-zoom>↗</button>
+                  </div>
+
+                  <!-- Primary copy (Diary Logs) -->
+                  <div class="shot-copy" data-dual-copy="addlog">
+                    <div class="shot-eyebrow" data-copy-eyebrow>Diary Logs</div>
+                    <h3 data-copy-title>Write it. Add moments. Keep it yours.</h3>
+                    <p data-copy-desc>
+                      Rich entries with text, images, videos, and audio—made for real life, not just notes.
+                    </p>
+
+                    <ul class="shot-points" data-copy-points>
+                      <li><b>Media-friendly:</b> photos, video, voice</li>
+                      <li><b>Comfortable layout:</b> long writing feels easy</li>
+                      <li><b>Local-first:</b> your content stays on-device</li>
+                    </ul>
+
+                    <div class="chips" data-copy-chips>
+                      <span class="chip">Images</span>
+                      <span class="chip">Video</span>
+                      <span class="chip">Audio</span>
                     </div>
-                    <div class="privacy-point">
-                        <h4>Intentional permissions</h4>
-                        <p>
-                            The app only requests camera, microphone, and file access
-                            when you choose to attach media to a log.
-                        </p>
-                    </div>
-                    <div class="privacy-point">
-                        <h4>You're in control</h4>
-                        <p>
-                            Delete entries at any time, or uninstall the app to remove
-                            all data from your device.
-                        </p>
-                    </div>
-                    <div class="privacy-point">
-                        <h4>Secure by default</h4>
-                        <p>
-                            Encryption and biometric unlock are built-in to keep your
-                            private thoughts safe from prying eyes.
-                        </p>
-                    </div>
+
+                    <!-- Alternate copy (Narration) stored as JSON so JS can swap text -->
+                    <script type="application/json" data-alt-copy>
+                      {
+                        "eyebrow": "Narration",
+                        "title": "Listen back—like a story.",
+                        "desc": "Narrate your diary entry with natural voices—perfect for reflection and hands-free review.",
+                        "points": [
+                          "<b>Natural voices:</b> choose the tone you like",
+                          "<b>Same screen:</b> narration sits right inside the entry flow",
+                          "<b>More emotion:</b> revisit memories like a story"
+                        ],
+                        "chips": ["Natural voices", "Hands-free", "Comfort"]
+                      }
+                    </script>
+                  </div>
                 </div>
+              </section>
+
+              <!-- Slide 5 -->
+              <section class="showcase-slide" data-slide aria-hidden="true">
+                <div class="shot-split">
+                  <div class="shot-stage">
+                    <img src="assets/img/screenshots/calendarscreen.png" alt="Calendar screen" data-gallery-item
+                      loading="lazy" />
+                    <button class="shot-zoom" type="button" aria-label="View full screenshot" data-zoom
+                      disabled>↗</button>
+                  </div>
+                  <div class="shot-copy">
+                    <div class="shot-eyebrow">Calendar Gallery</div>
+                    <h3>See your life on the calendar.</h3>
+                    <p>A memory map: browse by date and see entries + media directly on each day.</p>
+                    <ul class="shot-points">
+                      <li><b>At-a-glance:</b> days with entries stand out</li>
+                      <li><b>Media on dates:</b> revisit moments instantly</li>
+                      <li><b>Habit-friendly:</b> journaling stays consistent</li>
+                    </ul>
+                    <div class="chips">
+                      <span class="chip">Memory map</span>
+                      <span class="chip">Media on dates</span>
+                      <span class="chip">Recall fast</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Slide 4 -->
+              <section class="showcase-slide" data-slide aria-hidden="true">
+                <div class="shot-split">
+                  <div class="shot-stage">
+                    <img src="assets/img/screenshots/moodcheckinscreen.png" alt="Mood checkin screen" data-gallery-item
+                      loading="lazy" />
+                    <button class="shot-zoom" type="button" aria-label="View full screenshot" data-zoom>↗</button>
+                  </div>
+                  <div class="shot-copy">
+                    <div class="shot-eyebrow">Mood Tracker</div>
+                    <h3>Track feelings with nuance.</h3>
+                    <p>Log mood + notes + time—then export clean reports that you fully control.</p>
+                    <ul class="shot-points">
+                      <li><b>Detailed logging:</b> notes, date, time</li>
+                      <li><b>Reports:</b> PDF / CSV / JSON export</li>
+                      <li><b>Private by default:</b> no cloud required</li>
+                    </ul>
+                    <div class="chips">
+                      <span class="chip">Date & time</span>
+                      <span class="chip">Notes</span>
+                      <span class="chip">Export</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- NEW: Slide (Mood Insights) -->
+              <section class="showcase-slide" data-slide aria-hidden="true">
+                <div class="shot-split">
+                  <div class="shot-stage">
+                    <img src="assets/img/screenshots/moodinsightsscreen.png" alt="Mood insights screen"
+                      data-gallery-item loading="lazy" />
+                    <button class="shot-zoom" type="button" aria-label="View full screenshot" data-zoom>↗</button>
+                  </div>
+                  <div class="shot-copy">
+                    <div class="shot-eyebrow">Mood Insights</div>
+                    <h3>See patterns. Understand your weeks.</h3>
+                    <p>Beautiful insights that help you spot trends, triggers, and your most common emotional states
+                      over time.</p>
+                    <ul class="shot-points">
+                      <li><b>Trends:</b> how moods change over days/weeks</li>
+                      <li><b>Clarity:</b> readable charts that don’t overwhelm</li>
+                      <li><b>Export-ready:</b> insights match your report data</li>
+                    </ul>
+                    <div class="chips">
+                      <span class="chip">Trends</span>
+                      <span class="chip">Charts</span>
+                      <span class="chip">Insights</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- NEW: Slide (Notes & Reminders) -->
+              <section class="showcase-slide" data-slide aria-hidden="true">
+                <div class="shot-split">
+                  <div class="shot-stage">
+                    <img src="assets/img/screenshots/quicknotesscreen.png" alt="Quick notes screen" data-gallery-item
+                      loading="lazy" />
+                    <button class="shot-zoom" type="button" aria-label="View full screenshot" data-zoom>↗</button>
+                  </div>
+                  <div class="shot-copy">
+                    <div class="shot-eyebrow">Notes & Reminders</div>
+                    <h3>Quick notes that don’t get lost.</h3>
+                    <p>Create text + checklist notes, set reminders, and keep life organized without leaving your
+                      journal.</p>
+                    <ul class="shot-points">
+                      <li><b>Checklists:</b> simple, satisfying task flow</li>
+                      <li><b>Reminders:</b> nudges that keep your day on track</li>
+                      <li><b>Fast capture:</b> perfect for “don’t forget” moments</li>
+                    </ul>
+                    <div class="chips">
+                      <span class="chip">Checklist</span>
+                      <span class="chip">Reminders</span>
+                      <span class="chip">Quick notes</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
+          </div>
+
+          <div class="dots" data-slider-dots aria-label="Carousel dots"></div>
+
         </div>
+      </div>
     </section>
 
-    <!-- Screenshots -->
-    <section class="section" id="screenshots">
-        <div class="container">
-            <header class="section-header">
-                <h2>App preview</h2>
-                <p>These placeholders will be replaced with real screenshots from the app.</p>
-            </header>
-            <div class="grid screenshots-grid">
-                <div class="card screenshot-card">
-                    <div class="screenshot-placeholder">
-                        <span>Home / Dashboard</span>
-                    </div>
-                </div>
-                <div class="card screenshot-card">
-                    <div class="screenshot-placeholder">
-                        <span>Add Log Screen</span>
-                    </div>
-                </div>
-                <div class="card screenshot-card">
-                    <div class="screenshot-placeholder">
-                        <span>Calendar View</span>
-                    </div>
-                </div>
-                <div class="card screenshot-card">
-                    <div class="screenshot-placeholder">
-                        <span>Settings & Privacy</span>
-                    </div>
-                </div>
-            </div>
+    <!-- FEATURES -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-title" data-reveal>
+          <div>
+            <h2>Features that feel premium</h2>
+            <p>Calm journaling UX, fast capture, privacy-first trust.</p>
+          </div>
         </div>
+
+        <div class="grid-3" data-reveal>
+          <div class="feature">
+            <div class="feature-top">
+              <div class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 4h8l3 3v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor"
+                    stroke-width="2" />
+                  <path d="M15 4v3h3" stroke="currentColor" stroke-width="2" />
+                  <path d="M8 11h8M8 15h8M8 19h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>Daily logs with rich media</h3>
+            </div>
+            <p>Write freely and attach images, videos, and audio. Make your entries as detailed as you want.</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-top">
+              <div class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 1 0-6 0v4a3 3 0 0 0 3 3Z" stroke="currentColor"
+                    stroke-width="2" />
+                  <path d="M19 11a7 7 0 0 1-14 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M12 18v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+
+              <h3>Narration (natural voices)</h3>
+            </div>
+            <p>Listen back to entries using multiple natural voices — great for reflection and hands-free review.</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-top">
+              <div class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 4h10a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2Z" stroke="currentColor"
+                    stroke-width="2" />
+                  <path d="M8 9h8M8 13h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+
+              <h3>Quick Notes + reminders</h3>
+            </div>
+            <p>Create text notes and checklists, set reminders, and keep life organized without leaving your journal.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-top">
+              <div class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21s7-4.4 7-11a4 4 0 0 0-7-2 4 4 0 0 0-7 2c0 6.6 7 11 7 11Z" stroke="currentColor"
+                    stroke-width="2" />
+                </svg>
+              </div>
+
+              <h3>Detailed Mood Tracker</h3>
+            </div>
+            <p>Log moods with notes, date/time, and context. Spot patterns that matter to you.</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-top">
+              <div class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 4h8l3 3v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor"
+                    stroke-width="2" />
+                  <path d="M12 11v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M9 15l3 3 3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+
+              <h3>Exports you control</h3>
+            </div>
+            <p>Export mood reports as PDF / CSV / JSON. Your files remain under your control.</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-top">
+              <div class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 3v3M17 3v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M4 8h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M6 5h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
+                    stroke="currentColor" stroke-width="2" />
+                  <path d="M8 12h4M8 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+
+              <h3>Calendar gallery</h3>
+            </div>
+            <p>Browse your journal by date. See entries and media right on the calendar for fast recall.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- About -->
-    <section class="section section-alt" id="about">
-        <div class="container about-layout">
-            <div class="about-text">
-                <header class="section-header section-header-left">
-                    <h2>About Dear Diary</h2>
-                    <p>A personal project, crafted for people who care about privacy and design.</p>
-                </header>
-                <p>
-                    Dear Diary started with a simple idea: a journaling app that feels calm and
-                    delightful to use, without ever turning your private thoughts into someone
-                    else’s data.
-                </p>
-                <p>
-                    The app focuses on thoughtful typography, spacing, and gentle animations,
-                    combined with strong on-device security. No logins, no social features, no
-                    feed — just a quiet space for you.
-                </p>
-                <p>
-                    Whether you’re tracking your mood, recording daily events, or writing long
-                    reflections, Dear Diary is built to stay out of your way and keep your
-                    memories safe.
-                </p>
-            </div>
-            <div class="about-highlight card">
-                <h3>Key principles</h3>
-                <ul class="checklist">
-                    <li>Privacy and security over growth.</li>
-                    <li>Calm, minimal interface.</li>
-                    <li>Useful features only — no clutter.</li>
-                    <li>Respect for your time and attention.</li>
-                </ul>
-            </div>
+    <!-- WHY CHOOSE DEAR DIARY -->
+    <section class="why-section section" data-smooth-reveal>
+      <div class="container">
+        <div class="section-title" data-reveal>
+          <div>
+            <h2>Why Choose Dear Diary?</h2>
+            <p>Built for privacy, designed for you</p>
+          </div>
         </div>
+
+        <div class="why-grid" data-stagger>
+          <div class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="why-title">Local-First Architecture</h3>
+            <p class="why-description">
+              All your diary entries, moods, notes, and media are stored exclusively on your device using encrypted
+              SQLCipher database. No servers, no cloud sync, no third-party access.
+            </p>
+            <ul class="why-features">
+              <li>SQLCipher 256-bit encryption</li>
+              <li>Works completely offline</li>
+              <li>Instant sync-free writing</li>
+              <li>No subscription required</li>
+            </ul>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="why-title">Military-Grade Security</h3>
+            <p class="why-description">
+              Your content is protected with the same encryption technology used by governments and financial
+              institutions, combined with biometric authentication for secure access.
+            </p>
+            <ul class="why-features">
+              <li>Fingerprint & face unlock</li>
+              <li>Android Keystore integration</li>
+              <li>EncryptedSharedPreferences</li>
+              <li>Zero-knowledge architecture</li>
+            </ul>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="why-title">Rich Multimedia Journaling</h3>
+            <p class="why-description">
+              Go beyond text with photos, videos, and audio recordings. Natural voice narration lets you listen back
+              to your entries like a personal audiobook.
+            </p>
+            <ul class="why-features">
+              <li>Photo & video attachments</li>
+              <li>Audio diary recordings</li>
+              <li>Natural voice narration</li>
+              <li>Calendar gallery view</li>
+            </ul>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 21s7-4.4 7-11a4 4 0 0 0-7-2 4 4 0 0 0-7 2c0 6.6 7 11 7 11z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3 class="why-title">Mood Tracking & Insights</h3>
+            <p class="why-description">
+              Track your emotional wellbeing with detailed mood logs. Export beautiful reports in PDF, CSV, or JSON
+              formats to share with therapists or keep for yourself.
+            </p>
+            <ul class="why-features">
+              <li>Detailed mood check-ins</li>
+              <li>Visual insights & trends</li>
+              <li>Export reports you control</li>
+              <li>Pattern recognition</li>
+            </ul>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="why-title">Notes & Reminders</h3>
+            <p class="why-description">
+              Capture quick thoughts with text notes and checklists. Set reminders to keep your life organized without
+              leaving your journal.
+            </p>
+            <ul class="why-features">
+              <li>Quick capture notes</li>
+              <li>Checklist support</li>
+              <li>Smart reminders</li>
+              <li>Search & organize</li>
+            </ul>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 8v6M23 11h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="why-title">No Account Required</h3>
+            <p class="why-description">
+              Start journaling immediately with zero setup. No email, no password, no cloud registration. Just install
+              and begin your private journaling journey.
+            </p>
+            <ul class="why-features">
+              <li>Instant start</li>
+              <li>No personal info required</li>
+              <li>No tracking or analytics</li>
+              <li>No advertisements ever</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Download -->
-    <section class="section" id="download">
-        <div class="container download-section">
-            <header class="section-header">
-                <h2>Get Dear Diary</h2>
-                <p>Currently in development. Google Play link will appear here when published.</p>
-            </header>
-            <div class="store-badges">
-                <!-- Placeholder Google Play button -->
-                <a href="#" class="store-badge disabled" aria-disabled="true">
-                    <div class="store-icon">▶</div>
-                    <div class="store-text">
-                        <span class="store-small">Coming soon on</span>
-                        <span class="store-big">Google Play</span>
-                    </div>
-                </a>
-            </div>
+    <!-- SECURITY -->
+    <section id="security" class="section">
+      <div class="container">
+        <div class="section-title" data-reveal>
+          <div>
+            <h2>Privacy & Security highlights</h2>
+            <p>Clear statements that increase trust and align with Play Store expectations.</p>
+          </div>
         </div>
+
+        <div class="card callout" data-reveal>
+          <div>
+            <h3>Local-first. Encrypted. Protected access.</h3>
+            <p>
+              Dear Diary is designed so your personal content stays on your device. The app supports local encryption
+              and optional
+              biometric / password locking to help prevent unauthorized access. Exports are created on your device and
+              remain under your control.
+            </p>
+            <hr class="hr" />
+            <p class="muted">
+              Want the full details? <a class="btn btn-ghost" href="privacy.html">Privacy Policy →</a>
+            </p>
+          </div>
+
+          <div class="mini">
+            <div class="mini-card">
+              <strong>Stored locally</strong>
+              <span>No required cloud account for journaling.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Biometric/password lock</strong>
+              <span>Uses device security APIs for access control.</span>
+            </div>
+            <div class="mini-card">
+              <strong>User-controlled exports</strong>
+              <span>PDF/CSV/JSON files remain your choice to keep/share/delete.</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact -->
-    <section class="section section-alt" id="contact">
-        <div class="container contact-layout">
-            <div>
-                <header class="section-header section-header-left">
-                    <h2>Contact</h2>
-                    <p>Have feedback, ideas, or found a bug? I’d love to hear from you.</p>
-                </header>
-                <p>
-                    For support or questions about Dear Diary, please reach out anytime.
-                </p>
-                <p class="contact-email">
-                    Email: <a href="mailto:support@deardiary.app">support@deardiary.app</a>
-                </p>
-            </div>
-            <div class="card contact-note">
-                <p>
-                    This is a solo-built app. Thoughtful feedback and suggestions directly
-                    help shape the future of Dear Diary.
-                </p>
-            </div>
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-title" data-reveal>
+          <div>
+            <h2>FAQ</h2>
+            <p>Quick answers that reduce user hesitation.</p>
+          </div>
         </div>
+
+        <div class="faq" data-reveal>
+          <details class="faq-item">
+            <summary>Does Dear Diary require an account?</summary>
+            <div class="faq-body">No. The app is designed to work offline-first without requiring a cloud account.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Where is my data stored?</summary>
+            <div class="faq-body">On your device. Content is intended to remain local, with optional app lock and
+              on-device encryption support.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I export my mood history?</summary>
+            <div class="faq-body">Yes. You can export reports in PDF / CSV / JSON formats that you control.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How do I contact support?</summary>
+            <div class="faq-body">Email us anytime at <b>mydeardiaryjournal@gmail.com</b> or use the Support page.</div>
+          </details>
+        </div>
+      </div>
     </section>
-</main>
 
-<footer class="site-footer">
-    <div class="container footer-inner">
-        <div class="footer-left">
-            <span class="footer-logo">Dear Diary</span>
-            <span class="footer-copy">© <span id="year"></span> Dear Diary. All rights reserved.</span>
+    <!-- CTA BANNER -->
+    <section class="section" data-smooth-reveal>
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-content">
+            <h2 class="cta-title">Your Privacy, Your Journal, Your Way</h2>
+            <p class="cta-description">
+              Join thousands who trust Dear Diary for their most personal thoughts. Start your private journaling
+              journey today with zero compromise on privacy.
+            </p>
+            <div class="cta-buttons">
+              <a class="btn btn-primary" href="#play" data-magnetic>Download Soon</a>
+              <a class="btn" href="privacy.html">Read Privacy Policy</a>
+              <a class="btn btn-ghost" href="contact.html">Contact Support</a>
+            </div>
+          </div>
         </div>
-        <div class="footer-links">
-            <a href="policy.html">Privacy Policy</a>
-            <a href="terms.html">Terms &amp; Conditions</a>
+      </div>
+    </section>
+
+    <!-- PLAY -->
+    <section id="play" class="section">
+      <div class="container">
+        <div class="section-title" data-reveal>
+          <div>
+            <h2>Coming soon on Google Play</h2>
+            <p>We’re preparing a polished release with clear policies and support.</p>
+          </div>
         </div>
-    </div>
-</footer>
 
-<script>
-    // Simple mobile nav toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('.nav');
-    navToggle.addEventListener('click', () => {
-        nav.classList.toggle('nav-open');
-        navToggle.classList.toggle('nav-open');
-    });
+        <div class="card play-card" data-reveal>
+          <div class="play-grid">
+            <div class="play-left">
+              <div class="play-kicker">
+                <span aria-hidden="true">🚀</span>
+                <span>Launch-ready polish</span>
+              </div>
+              <h3 class="play-title">A premium journaling experience — built for trust.</h3>
+              <p class="muted">
+                When your Play Store listing is live, replace the button below with your store link.
+              </p>
 
-    // Current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+              <div class="play-actions">
+                <a class="btn btn-primary" href="contact.html">Contact Support</a>
+                <a class="btn" href="privacy.html">Privacy Policy</a>
+                <a class="btn" href="terms.html">Terms</a>
+              </div>
+
+              <p class="play-foot muted2">
+                Support: <b>mydeardiaryjournal@gmail.com</b>
+              </p>
+            </div>
+
+            <div class="play-right">
+              <div class="stat">
+                <b>Offline-first</b>
+                <span>No cloud required</span>
+              </div>
+              <div class="stat">
+                <b>Protected access</b>
+                <span>Biometric / password lock</span>
+              </div>
+              <div class="stat">
+                <b>Exports</b>
+                <span>PDF • CSV • JSON</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer footer-enhanced">
+      <div class="container">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <img src="assets/img/logo.png" alt="Dear Diary logo" />
+            <h3>Dear Diary</h3>
+            <p>
+              A privacy-first journaling app that keeps your thoughts, moods, and memories completely private with
+              local encryption and offline-first design.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-link" aria-label="Email" data-tooltip="Email Us">
+                <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Twitter" data-tooltip="Follow on Twitter">
+                <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+                  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5 0-.28-.03-.56-.08-.83A7.72 7.72 0 0 0 23 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="GitHub" data-tooltip="Star on GitHub">
+                <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#screenshots">Screenshots</a></li>
+              <li><a href="#security">Security</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#play">Download</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms & Conditions</a></li>
+              <li><a href="contact.html">Support</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#security">Data Safety</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="#faq">Help Center</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-enhanced">
+          <div>
+            <small>© <span data-year></span> Dear Diary. All rights reserved.</small>
+          </div>
+          <div class="footer-legal">
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="contact.html">Support</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Lightbox / Gallery modal -->
+  <dialog class="modal" data-modal>
+    <form method="dialog" class="modal-inner">
+      <div class="modal-top">
+        <div>
+          <strong>Screenshot Gallery</strong>
+          <span class="modal-counter" data-modal-counter style="margin-left: 8px; color: var(--muted); font-size: 14px;">1 / 6</span>
+        </div>
+        <button class="icon-btn" value="cancel" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="modal-nav modal-nav-prev" data-modal-prev aria-label="Previous screenshot">‹</button>
+        <img data-modal-img alt="Full screenshot preview" />
+        <button type="button" class="modal-nav modal-nav-next" data-modal-next aria-label="Next screenshot">›</button>
+      </div>
+      <div class="modal-foot">
+        <p style="text-align: center; color: var(--muted2); margin: 0;">Use ← → arrow keys or click buttons to navigate • Scroll to view full image</p>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Progress bar -->
+  <div class="read-progress"></div>
+
+  <!-- Floating actions -->
+  <div class="floating-actions">
+    <button class="fab scroll-to-top" aria-label="Scroll to top">↑</button>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/overhaul.js"></script>
 </body>
+
 </html>
