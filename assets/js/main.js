@@ -97,47 +97,112 @@ console.log("🔵 main.js is loading...");
   }
 
   // ----------------------------
-  // Mobile nav drawer
+  // Mobile nav drawer - CLEAN REBUILD
   // ----------------------------
+  console.log("🔧 Setting up mobile navigation...");
   const navToggle = document.querySelector("[data-nav-toggle]");
   const navClose = document.querySelector("[data-nav-close]");
   const drawer = document.querySelector("[data-nav-drawer]");
   const scrim = document.querySelector("[data-nav-scrim]");
+  
+  console.log("Nav elements found:", {
+    navToggle: !!navToggle,
+    navClose: !!navClose,
+    drawer: !!drawer,
+    scrim: !!scrim
+  });
 
   function openNav() {
-    if (!drawer || !scrim || !navToggle) return;
+    console.log("📂 Opening nav");
+    if (!drawer || !scrim) return;
     drawer.classList.add("is-open");
-    drawer.setAttribute("aria-hidden", "false");
-    scrim.hidden = false;
-    navToggle.setAttribute("aria-expanded", "true");
+    scrim.classList.add("is-visible");
     document.body.style.overflow = "hidden";
   }
 
   function closeNav() {
-    if (!drawer || !scrim || !navToggle) return;
+    console.log("❌ Closing nav");
+    if (!drawer || !scrim) return;
     drawer.classList.remove("is-open");
-    drawer.setAttribute("aria-hidden", "true");
-    scrim.hidden = true;
-    navToggle.setAttribute("aria-expanded", "false");
+    scrim.classList.remove("is-visible");
     document.body.style.overflow = "";
   }
 
-  if (navToggle && drawer && scrim) {
-    navToggle.addEventListener("click", () => {
-      drawer.classList.contains("is-open") ? closeNav() : openNav();
+  // Toggle button
+  if (navToggle) {
+    console.log("✅ Attaching click handler to nav toggle");
+    navToggle.addEventListener("click", (e) => {
+      console.log("🔴 Nav toggle clicked!");
+      e.preventDefault();
+      e.stopPropagation();
+      if (drawer.classList.contains("is-open")) {
+        closeNav();
+      } else {
+        openNav();
+      }
+    });
+  } else {
+    console.log("❌ Nav toggle button NOT found!");
+  }
+
+  // Close button
+  if (navClose) {
+    navClose.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeNav();
     });
   }
-  if (navClose) navClose.addEventListener("click", closeNav);
-  if (scrim) scrim.addEventListener("click", closeNav);
 
-  // Close drawer on navigation click
-  if (drawer) {
-    drawer.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeNav));
+  // Scrim click closes drawer
+  if (scrim) {
+    scrim.addEventListener("click", () => {
+      closeNav();
+    });
   }
 
-  // Escape closes drawer and modal (modal also closes itself normally)
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeNav();
+  // Handle all drawer link clicks
+  if (drawer) {
+    const allLinks = drawer.querySelectorAll("a");
+    
+    allLinks.forEach((link) => {
+      link.addEventListener("click", function(e) {
+        const href = this.getAttribute("href");
+        
+        // If it's a hash/anchor link
+        if (href && href.startsWith("#")) {
+          e.preventDefault();
+          closeNav();
+          
+          // Wait for drawer to close, then scroll
+          setTimeout(() => {
+            const target = document.querySelector(href);
+            if (target) {
+              const headerOffset = 80;
+              const elementPosition = target.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+              
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+              });
+              
+              window.location.hash = href;
+            }
+          }, 300);
+        } else {
+          // Regular link - just close drawer and let it navigate
+          closeNav();
+        }
+      });
+    });
+  }
+
+  // Escape key closes drawer
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && drawer && drawer.classList.contains("is-open")) {
+      closeNav();
+    }
   });
 
   // ----------------------------
@@ -326,18 +391,40 @@ console.log("🔵 main.js is loading...");
         }
       });
 
-      // Gestures (Touch)
+      // Gestures (Touch) - Improved for mobile
       let touchStartX = 0;
+      let touchStartY = 0;
+      let isSwiping = false;
+      
       slider.addEventListener("touchstart", e => {
           touchStartX = e.changedTouches[0].screenX;
+          touchStartY = e.changedTouches[0].screenY;
+          isSwiping = false;
           isPaused = true;
           stopTimer();
       }, {passive: true});
       
+      slider.addEventListener("touchmove", e => {
+          if (!isSwiping) {
+              const touchMoveX = e.changedTouches[0].screenX;
+              const touchMoveY = e.changedTouches[0].screenY;
+              const deltaX = Math.abs(touchMoveX - touchStartX);
+              const deltaY = Math.abs(touchMoveY - touchStartY);
+              
+              // Only capture horizontal swipes (not vertical scrolling)
+              if (deltaX > deltaY && deltaX > 10) {
+                  isSwiping = true;
+              }
+          }
+      }, {passive: true});
+      
       slider.addEventListener("touchend", e => {
-          const touchEndX = e.changedTouches[0].screenX;
-          handleSwipe(touchStartX, touchEndX);
+          if (isSwiping) {
+              const touchEndX = e.changedTouches[0].screenX;
+              handleSwipe(touchStartX, touchEndX);
+          }
           isPaused = false;
+          isSwiping = false;
           startTimer();
       }, {passive: true});
 
@@ -389,13 +476,14 @@ console.log("🔵 main.js is loading...");
           renderDots();
         }
 
-        // Mobile Scroll Sync (Scroll Snap helper)
+        // Mobile Scroll Sync - DISABLED on mobile, using display instead
+        // On mobile we show/hide slides with display:none/block for better compatibility
+        // Desktop uses transform for smooth transitions
         if (window.innerWidth < 900) {
+             // Don't use transform on mobile - CSS handles visibility with display property
              const track = slider.querySelector("[data-slider-track]");
              if (track) {
-                 const slideWidth = slides[0].offsetWidth; // approx
-                 // Better: scroll to the specific element
-                 slides[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                 track.style.transform = 'none';
              }
         }
         

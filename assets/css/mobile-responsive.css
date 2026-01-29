@@ -1,0 +1,1170 @@
+/* ==========================================
+   MOBILE RESPONSIVENESS FIX - CLEAN REBUILD
+   ========================================== */
+
+/* Critical mobile fixes applied first - MOBILE ONLY */
+@media (max-width: 899px) {
+    /* Prevent any horizontal overflow immediately on mobile */
+    html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+}
+
+/* ==========================================
+   1. MOBILE NAVIGATION - COMPLETELY REBUILT
+   ========================================== */
+
+@media (max-width: 899px) {
+    /* Show hamburger menu button - override main.css */
+    .nav-toggle,
+    button.nav-toggle,
+    .icon-btn.nav-toggle,
+    button[data-nav-toggle] {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background: transparent !important;
+        border: none !important;
+        color: var(--text-primary) !important;
+        font-size: 1.5rem !important;
+        cursor: pointer !important;
+        padding: 8px !important;
+        z-index: 1001 !important;
+        position: relative !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        pointer-events: auto !important;
+    }
+    
+    .nav-toggle span {
+        display: block !important;
+        font-size: 1.5rem !important;
+        line-height: 1 !important;
+    }
+
+    /* Nav actions area - theme toggle and hamburger */
+    .nav-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        z-index: 1001 !important;
+        pointer-events: auto !important;
+    }
+    
+    .nav-actions .icon-btn,
+    .nav-actions button[data-theme-toggle] {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: transparent !important;
+        border: none !important;
+        color: var(--text-primary) !important;
+        cursor: pointer !important;
+        padding: 10px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        border-radius: 50% !important;
+        position: relative !important;
+        z-index: 1001 !important;
+        pointer-events: auto !important;
+    }
+    
+    .nav-actions .icon-btn span,
+    .nav-actions button[data-theme-toggle] span {
+        font-size: 1.25rem !important;
+        line-height: 1 !important;
+        display: block !important;
+    }
+
+    /* Hide desktop nav links */
+    .nav-links {
+        display: none !important;
+    }
+
+    /* Hide Coming soon button in nav to save space */
+    .nav-actions .btn-primary {
+        display: none;
+    }
+
+    /* Scrim (overlay) - BELOW drawer */
+    .scrim {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .scrim.is-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Mobile Drawer - ABOVE scrim */
+    .drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 85%;
+        max-width: 320px;
+        background: var(--bg-deep-navy, #0a1929);
+        z-index: 9999;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+        padding: 20px;
+        box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .drawer.is-open {
+        transform: translateX(0);
+    }
+
+    /* Drawer header */
+    .drawer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .drawer-title strong {
+        display: block;
+        font-size: 1.2rem;
+        color: var(--text-primary, #fff);
+        margin-bottom: 4px;
+    }
+
+    .drawer-title .muted {
+        font-size: 0.85rem;
+        opacity: 0.6;
+    }
+
+    /* Close button */
+    [data-nav-close] {
+        background: transparent;
+        border: none;
+        color: var(--text-primary, #fff);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 4px 8px;
+        line-height: 1;
+    }
+
+    /* Drawer links */
+    .drawer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 30px;
+    }
+
+    .drawer-links a {
+        display: block;
+        padding: 14px 8px;
+        color: var(--text-primary, #fff);
+        text-decoration: none;
+        font-size: 1.05rem;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+
+    .drawer-links a:active {
+        background: rgba(245, 158, 11, 0.15);
+        color: #f59e0b;
+        transform: translateX(4px);
+    }
+
+    .drawer-links hr {
+        margin: 12px 0;
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Drawer actions */
+    .drawer-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: auto;
+    }
+
+    .drawer-actions .btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+    }
+}
+
+/* ==========================================
+   2. HEADER & BRAND FIX
+   ========================================== */
+
+@media (max-width: 899px) {
+    .header {
+        padding: 12px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        overflow: visible;
+        pointer-events: auto;
+    }
+    
+    .header .container {
+        overflow: visible;
+        pointer-events: auto;
+    }
+    
+    .nav {
+        overflow: visible;
+        pointer-events: auto;
+    }
+
+    .brand img {
+        height: 48px; /* Smaller logo on mobile */
+    }
+
+    /* Ensure container has proper padding on mobile */
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+/* ==========================================
+   3. HERO SECTION MOBILE FIX
+   ========================================== */
+
+@media (max-width: 899px) {
+    .hero {
+        padding: 120px 0 60px; /* Account for fixed header */
+        min-height: auto;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .hero-copy {
+        order: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-visual {
+        order: 2;
+    }
+
+    .h1-hero {
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+
+    .sub-hero {
+        font-size: 1rem;
+        max-width: 90%;
+        margin-bottom: 24px;
+    }
+
+    .hero-cta {
+        width: 100%;
+    }
+
+    .btn-glass {
+        width: 100%;
+        max-width: 300px;
+        padding: 14px 28px;
+    }
+
+    .phone-stage {
+        width: 280px;
+        max-width: 85vw;
+    }
+
+    .phone-frame {
+        transform: none; /* Remove 3D tilt on mobile */
+    }
+}
+
+/* ==========================================
+   4. SCREENSHOTS SECTION MOBILE FIX
+   ========================================== */
+
+@media (max-width: 899px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        margin-bottom: 32px;
+    }
+
+    .section-title h2 {
+        font-size: 1.75rem;
+    }
+
+    .section-actions {
+        margin-top: 16px;
+    }
+
+    /* Device selector mobile fix */
+    .device-selector {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 40px;
+    }
+
+    .device-selector-label {
+        font-size: 0.85rem;
+    }
+
+    .device-toggle {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .device-toggle-btn {
+        flex: 1;
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+
+    /* Showcase/Slider mobile fix */
+    .showcase-wrap {
+        margin: 0;
+        position: relative;
+        padding: 0 16px;
+    }
+
+    .showcase {
+        border-radius: 0;
+        position: relative;
+    }
+    
+    /* Fix viewport container */
+    .viewport,
+    .showcase-viewport {
+        position: relative;
+        width: 100%;
+        overflow: visible;
+    }
+    
+    /* Fix track for mobile */
+    .track {
+        display: flex;
+        position: relative;
+        width: 100%;
+    }
+    
+    /* Ensure slideshow is visible and functional */
+    .showcase[data-slider] {
+        display: block;
+        width: 100%;
+    }
+
+    /* Hide side controls on mobile */
+    .slider-controls,
+    .ctrl {
+        display: none !important;
+    }
+
+    /* Slide layout mobile - CRITICAL FIX */
+    .showcase-slide {
+        padding: 20px;
+        min-width: 100%;
+        width: 100%;
+        display: none !important;
+        visibility: hidden;
+        opacity: 0;
+        position: relative;
+    }
+    
+    /* Make active slide visible - OVERRIDE overhaul-generated.css */
+    .showcase-slide.active {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        z-index: 1 !important;
+    }
+
+    .shot-split {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Screenshot stage mobile */
+    .shot-stage {
+        padding: 0;
+        order: 1;
+        overflow: visible;
+        width: 100%;
+        max-width: 100%;
+        background: transparent;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Add phone frame to screenshots on mobile */
+    .shot-stage::before {
+        display: none; /* Remove any pseudo elements */
+    }
+    
+    .shot-stage {
+        position: relative;
+        perspective: 1000px;
+    }
+
+    .shot-stage img {
+        max-height: 500px;
+        width: auto;
+        max-width: 90%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+        /* Phone frame styling */
+        background: #111;
+        border-radius: 32px;
+        padding: 10px;
+        box-shadow: 
+            inset 0 0 4px rgba(255,255,255,0.2), 
+            0 20px 40px rgba(0,0,0,0.6),
+            0 0 40px rgba(245, 158, 11, 0.2);
+        border: 2px solid #333;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Copy section mobile */
+    .shot-copy {
+        padding-left: 0;
+        padding-right: 0;
+        order: 2;
+        text-align: left;
+        width: 100%;
+    }
+
+    .shot-copy h3 {
+        font-size: 1.75rem;
+        margin-bottom: 16px;
+        line-height: 1.2;
+    }
+
+    .shot-copy p {
+        font-size: 1rem;
+        margin-bottom: 24px;
+        line-height: 1.6;
+    }
+
+    .shot-points {
+        margin: 24px 0;
+        padding-top: 24px;
+    }
+
+    .shot-points li {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+        padding-left: 28px;
+    }
+
+    .chips {
+        margin-top: 24px;
+    }
+
+    .chip {
+        font-size: 0.8rem;
+        padding: 5px 14px;
+    }
+
+    /* Control deck mobile - Enhanced visibility */
+    .control-deck {
+        margin-top: 32px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .deck-info {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        opacity: 0.8;
+        font-weight: 500;
+    }
+
+    .deck-progress {
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .deck-progress-bar {
+        height: 100%;
+        background: var(--accent-gold);
+        transition: width 0.3s ease;
+    }
+
+    .deck-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+    }
+
+    .deck-actions button,
+    .deck-btn {
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 14px 28px;
+        background: rgba(245, 158, 11, 0.15);
+        border: 2px solid var(--accent-gold);
+        border-radius: 12px;
+        color: var(--accent-gold);
+        cursor: pointer;
+        transition: all 0.3s;
+        flex: 1;
+        max-width: 140px;
+        min-height: 48px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        position: relative;
+        z-index: 10;
+        pointer-events: auto;
+    }
+    
+    [data-prev]:before {
+        content: "← ";
+    }
+    
+    [data-next]:after {
+        content: " →";
+    }
+
+    .deck-btn:active {
+        background: var(--accent-gold);
+        color: var(--bg-deep-navy);
+        transform: scale(0.95);
+    }
+
+    /* Zoom button mobile */
+    .shot-zoom {
+        bottom: 16px;
+        right: 16px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background: var(--accent-gold);
+        color: var(--bg-deep-navy);
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        touch-action: manipulation;
+    }
+    
+    .shot-zoom:active {
+        transform: scale(0.9);
+    }
+}
+
+/* ==========================================
+   5. BENTO GRID MOBILE FIX
+   ========================================== */
+
+@media (max-width: 899px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-bottom: 20px;
+    }
+
+    .bento-tile {
+        padding: 24px;
+        min-height: 280px;
+    }
+
+    .bento-tile h3 {
+        font-size: 1.25rem;
+    }
+
+    /* Tile backgrounds mobile */
+    .tile-media .tile-bg img,
+    .tile-audio .tile-bg img,
+    .tile-calendar .tile-bg img {
+        opacity: 0.3; /* Reduce opacity for better text readability on mobile */
+    }
+}
+
+/* ==========================================
+   6. STATS SECTION MOBILE FIX
+   ========================================== */
+
+@media (max-width: 767px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .stat-card {
+        padding: 20px;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+    }
+
+    .stat-description {
+        font-size: 0.85rem;
+    }
+}
+
+/* ==========================================
+   7. WHY CHOOSE SECTION MOBILE FIX
+   ========================================== */
+
+@media (max-width: 767px) {
+    .why-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .why-card {
+        padding: 24px;
+    }
+
+    .why-title {
+        font-size: 1.15rem;
+    }
+}
+
+/* ==========================================
+   8. MODAL/LIGHTBOX MOBILE FIX
+   ========================================== */
+
+@media (max-width: 899px) {
+    .modal-inner {
+        padding: 16px;
+    }
+
+    .modal-top {
+        margin-bottom: 16px;
+    }
+
+    .modal-top strong {
+        font-size: 1rem;
+    }
+
+    .modal-top button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .modal-body img {
+        max-height: 70vh;
+        max-width: 95vw;
+        border-radius: 16px;
+    }
+
+    .modal-nav {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+    }
+
+    .modal-nav-prev {
+        left: 10px;
+    }
+
+    .modal-nav-next {
+        right: 10px;
+    }
+
+    .modal-foot {
+        font-size: 0.8rem;
+        margin-top: 16px;
+    }
+}
+
+/* ==========================================
+   9. FOOTER MOBILE FIX
+   ========================================== */
+
+@media (max-width: 767px) {
+    .footer {
+        padding: 50px 0 30px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr !important;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-brand {
+        text-align: center;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    .footer-brand img {
+        height: 48px;
+        margin: 0 auto 16px;
+    }
+    
+    .footer-brand p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        opacity: 0.7;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    /* Center social icons on mobile */
+    .footer-social {
+        justify-content: center;
+        margin: 24px auto;
+    }
+
+    .footer-column {
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .footer-column h4 {
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+
+    .footer-column ul {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .footer-column li {
+        margin-bottom: 0;
+    }
+    
+    .footer-column a {
+        font-size: 0.95rem;
+        display: inline-block;
+        padding: 4px 0;
+    }
+
+    .footer-bottom-enhanced {
+        font-size: 0.85rem;
+        padding-top: 20px;
+        line-height: 1.6;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .footer-legal {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* ==========================================
+   10. CONTENT CARDS MOBILE FIX
+   ========================================== */
+
+@media (max-width: 899px) {
+    .content-card {
+        padding: 24px 20px;
+        margin-bottom: 32px;
+        border-radius: 12px;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .content-section-title h1,
+    .content-section-title h2 {
+        font-size: 1.75rem;
+    }
+
+    .content-section-title p {
+        font-size: 0.95rem;
+    }
+
+    .content-page {
+        padding: 100px 0 40px; /* Account for fixed header */
+    }
+    
+    .content-page-head {
+        padding: 0 16px;
+        margin-bottom: 32px;
+    }
+    
+    /* Support card mobile layout */
+    .support-card {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .support-main,
+    .support-side {
+        padding: 0;
+    }
+    
+    .support-email {
+        word-break: break-word;
+    }
+
+    .content-page-head h1 {
+        font-size: 1.75rem;
+    }
+
+    .content-prose {
+        padding: 0;
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================
+   11. TOUCH OPTIMIZATIONS
+   ========================================== */
+
+@media (max-width: 899px) {
+    /* Larger touch targets */
+    button,
+    a.btn,
+    .btn-glass,
+    .icon-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Prevent text selection on interactive elements */
+    button,
+    .btn,
+    .btn-glass,
+    .icon-btn,
+    .nav-toggle {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-touch-callout: none;
+        user-select: none;
+    }
+
+    /* Improve scrolling performance */
+    .drawer,
+    .modal,
+    .showcase {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ==========================================
+   12. LANDSCAPE MOBILE FIX
+   ========================================== */
+
+@media (max-width: 899px) and (orientation: landscape) {
+    .hero {
+        padding: 100px 0 40px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+    }
+
+    .hero-copy {
+        align-items: flex-start;
+    }
+
+    .h1-hero {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+
+    .phone-stage {
+        width: 200px;
+    }
+}
+
+/* ==========================================
+   13. SMALL MOBILE (< 375px)
+   ========================================== */
+
+@media (max-width: 374px) {
+    .container {
+        padding: 0 12px;
+    }
+
+    .h1-hero {
+        font-size: 1.75rem;
+    }
+
+    .brand img {
+        height: 40px;
+    }
+
+    .shot-copy h3 {
+        font-size: 1.5rem;
+    }
+
+    .phone-stage {
+        width: 240px;
+    }
+}
+
+/* ==========================================
+   14. PREVENT HORIZONTAL SCROLL (MOBILE ONLY)
+   ========================================== */
+
+@media (max-width: 899px) {
+    html,
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    .container {
+        overflow-x: hidden;
+    }
+
+    /* Fix any elements that might cause horizontal scroll */
+    .infinite-field-bg,
+    .infinite-field-bg__image,
+    .infinite-field-bg__overlay {
+        width: 100vw;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+
+    /* Ensure particles don't cause overflow */
+    .particles-container {
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    /* Prevent track from causing horizontal scroll */
+    .viewport,
+    .showcase-viewport {
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    /* Ensure slides don't overflow */
+    .track {
+        width: 100%;
+    }
+    
+    /* Fix any full-width sections */
+    section {
+        width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+/* ==========================================
+   15. ACCESSIBILITY & FOCUS STATES
+   ========================================== */
+
+@media (max-width: 899px) {
+    /* Better focus indicators on mobile */
+    a:focus,
+    button:focus,
+    [tabindex]:focus {
+        outline: 2px solid var(--accent-gold);
+        outline-offset: 2px;
+    }
+
+    /* Skip link mobile */
+    .skip-link {
+        position: fixed;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        background: var(--accent-gold);
+        color: var(--bg-deep-navy);
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+        top: 16px;
+    }
+}
+
+/* ==========================================
+   16. DESKTOP PRESERVATION (≥900px)
+   Ensure desktop layouts are not affected
+   ========================================== */
+
+@media (min-width: 900px) {
+    /* Restore desktop container behavior */
+    .container {
+        max-width: 1200px !important;
+        padding-left: 20px;
+        padding-right: 20px;
+        overflow-x: visible;
+    }
+    
+    /* Ensure no mobile-specific overrides affect desktop */
+    html,
+    body {
+        overflow-x: visible;
+        width: auto;
+    }
+    
+    /* Desktop viewport should not have overflow restrictions */
+    .viewport,
+    .showcase-viewport {
+        overflow: visible;
+        width: auto;
+    }
+    
+    /* Desktop images should display naturally with phone frame */
+    .shot-stage {
+        overflow: visible;
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1000px;
+    }
+    
+    .shot-stage img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 580px;
+        /* Phone frame styling */
+        background: #111;
+        border-radius: 32px;
+        padding: 10px;
+        box-shadow: 
+            inset 0 0 4px rgba(255,255,255,0.2), 
+            0 20px 40px rgba(0,0,0,0.6),
+            0 0 40px rgba(245, 158, 11, 0.2);
+        border: 2px solid #333;
+    }
+    
+    /* Ensure footer uses desktop grid */
+    .footer-main {
+        grid-template-columns: 2fr 1fr 1fr 1fr !important;
+    }
+    
+    /* Ensure sections don't have width restrictions */
+    section {
+        width: auto;
+        overflow-x: visible;
+    }
+    
+    /* Ensure track behaves normally on desktop */
+    .track {
+        width: auto;
+    }
+    
+    /* Showcase should not be full width */
+    .showcase-wrap {
+        margin: 0;
+    }
+    
+    /* Ensure shot-split uses proper grid on desktop */
+    .shot-split {
+        display: grid;
+    }
+}
+
+/* ==========================================
+   17. MOBILE SLIDESHOW CRITICAL OVERRIDES
+   Force visibility and proper display
+   ========================================== */
+
+@media (max-width: 899px) {
+    /* Override any conflicting desktop styles */
+    .track[data-slider-track] {
+        display: flex !important;
+        flex-direction: row;
+        position: relative;
+        width: 100%;
+        transform: none !important;
+    }
+    
+    /* Force active slide to be visible */
+    .showcase-slide[data-slide] {
+        position: relative;
+        min-height: 400px;
+    }
+    
+    .showcase-slide[data-slide].active {
+        display: flex !important;
+        flex-direction: column;
+    }
+    
+    /* Ensure images are visible and loaded */
+    .shot-stage[style],
+    .shot-copy[style] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    /* Force image visibility */
+    img[data-screenshot] {
+        opacity: 1 !important;
+        visibility: visible !important;
+        min-height: 200px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Debug helper - add slight background to shot-stage */
+    .shot-stage {
+        background: rgba(255, 255, 255, 0.02);
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
