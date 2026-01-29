@@ -25,7 +25,27 @@ console.log("🔵 main.js is loading...");
     });
 
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", mode === "light" ? "#f6f8ff" : "#0b1020");
+    if (meta) meta.setAttribute("content", mode === "light" ? "#FFFDF5" : "#0A2540");
+
+    // Dynamic Screenshot Swap (Premium Feature)
+    const screenshots = document.querySelectorAll('img[data-screenshot]');
+    screenshots.forEach(img => {
+        const currentSrc = img.src;
+        if (mode === 'light') {
+            // Switch to Light (.jpg) - handle both png and jpg origins
+            // Preload technique: just swap src, browser handles mostly well, 
+            // but for "true" preload we'd create an Image object. 
+            // Given "instant feeling", direct swap is preferred.
+            if (currentSrc.includes('_dark')) {
+                img.src = currentSrc.replace('_dark.png', '_light.jpg').replace('_dark.jpg', '_light.jpg');
+            }
+        } else {
+            // Switch to Dark (.png)
+            if (currentSrc.includes('_light')) {
+                img.src = currentSrc.replace('_light.jpg', '_dark.png'); 
+            }
+        }
+    });
   }
 
   if (stored === "light" || stored === "dark") setTheme(stored);
@@ -243,10 +263,11 @@ console.log("🔵 main.js is loading...");
       newBtn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
+        collectImages();
         const stage = newBtn.closest(".shot-stage");
         const img = stage ? stage.querySelector("img") : null;
-        if (img && img.getAttribute("src")) {
-          openModal(img.getAttribute("src"), img.getAttribute("alt"));
+        if (img && img.src) {
+          openModal(img.src, img.getAttribute("alt"));
         }
       });
     });
@@ -268,107 +289,182 @@ console.log("🔵 main.js is loading...");
   // ----------------------------
   const slider = document.querySelector("[data-slider]");
   if (slider) {
+    // --- REFACTORED SLIDER LOGIC ---
+    // Select all slides
     const track = slider.querySelector("[data-slider-track]");
     const slides = Array.from(slider.querySelectorAll("[data-slide]"));
     const dotsWrap = slider.querySelector("[data-slider-dots]");
-    const prevBtn = slider.querySelector("[data-prev]");
-    const nextBtn = slider.querySelector("[data-next]");
-
     let index = 0;
     let timer = null;
-    const intervalMs = 4200;
+    const intervalMs = 6000;
+    let isPaused = false;
 
-    // Pause state (fixes “hover to stop” reliably)
-    let pausedByHover = false;
+    // 1. Initialize
+    function init() {
+      // Set initial state
+      updateSlideState(0);
+      startTimer();
+      
+      // Event Delegation for Controls (Robust)
+      slider.addEventListener("click", (e) => {
+        const nextBtn = e.target.closest("[data-next]");
+        const prevBtn = e.target.closest("[data-prev]");
+        const dotBtn = e.target.closest(".dot");
 
-    function stop() {
-      if (timer) clearInterval(timer);
-      timer = null;
+        if (nextBtn) {
+          nextSlide();
+          resetTimer();
+        } else if (prevBtn) {
+          prevSlide();
+          resetTimer();
+        } else if (dotBtn) {
+          const newIndex = parseInt(dotBtn.dataset.index);
+          if (!isNaN(newIndex)) {
+             goToSlide(newIndex);
+             resetTimer();
+          }
+        }
+      });
+
+      // Gestures (Touch)
+      let touchStartX = 0;
+      slider.addEventListener("touchstart", e => {
+          touchStartX = e.changedTouches[0].screenX;
+          isPaused = true;
+          stopTimer();
+      }, {passive: true});
+      
+      slider.addEventListener("touchend", e => {
+          const touchEndX = e.changedTouches[0].screenX;
+          handleSwipe(touchStartX, touchEndX);
+          isPaused = false;
+          startTimer();
+      }, {passive: true});
+
+      // Hover Pause
+      slider.addEventListener("mouseenter", () => { isPaused = true; stopTimer(); });
+      slider.addEventListener("mouseleave", () => { isPaused = false; startTimer(); });
     }
 
-    function start() {
-      if (pausedByHover) return; // ✅ don't restart while hovered
-      stop();
-      timer = setInterval(() => go(index + 1), intervalMs);
+    function goToSlide(i) {
+        // Loop logic
+        let newIndex = i;
+        if (newIndex >= slides.length) newIndex = 0;
+        if (newIndex < 0) newIndex = slides.length - 1;
+
+        // Apply
+        updateSlideState(newIndex);
     }
 
-    function setPaused(p) {
-      pausedByHover = p;
-      if (pausedByHover) stop();
-      else start();
+    function nextSlide() { goToSlide(index + 1); }
+    function prevSlide() { goToSlide(index - 1); }
+
+    function updateSlideState(newIndex) {
+        const oldIndex = index;
+        index = newIndex;
+
+        // CSS State Management
+        slides.forEach((slide, i) => {
+            slide.classList.remove("active", "exit-left");
+            slide.setAttribute("aria-hidden", i === index ? "false" : "true");
+            
+            if (i === index) {
+                slide.classList.add("active");
+            }
+        });
+
+        // Desktop Exit Animation (only if moving forward roughly)
+        /* 
+           Simpler exit logic: Just clear previous. 
+           The CSS transitions on .active and default opacity handle the crossfade.
+           If we really want the "slide out left", we need to know direction.
+        */
+        if (window.innerWidth >= 900 && index !== oldIndex) {
+             // If we ruled that we are moving 'next'
+             // slides[oldIndex].classList.add("exit-left"); 
+        }
+        
+        // Dots
+        if (dotsWrap) {
+          renderDots();
+        }
+
+        // Mobile Scroll Sync (Scroll Snap helper)
+        if (window.innerWidth < 900) {
+             const track = slider.querySelector("[data-slider-track]");
+             if (track) {
+                 const slideWidth = slides[0].offsetWidth; // approx
+                 // Better: scroll to the specific element
+                 slides[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+             }
+        }
+        
+        // Dual Copy Sync logic remains if needed, simply called here
+        if (typeof startDualRotation === 'function') startDualRotation();
     }
 
-    // --- Dual copy elements (optional; only used if present in DOM) ---
-    const dual = slider.querySelector('[data-dual-copy="addlog"]');
+    function renderDots() {
+        if (!dotsWrap) return;
+        // Only build once if empty, else just update
+        if (dotsWrap.children.length !== slides.length) {
+            dotsWrap.innerHTML = "";
+            slides.forEach((_, i) => {
+                const b = document.createElement("button");
+                b.className = "dot";
+                b.dataset.index = i;
+                b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+                dotsWrap.appendChild(b);
+            });
+        }
+        
+        Array.from(dotsWrap.children).forEach((dot, i) => {
+            dot.classList.toggle("is-active", i === index);
+            dot.setAttribute("aria-selected", i === index);
+        });
+    }
+
+    function handleSwipe(start, end) {
+        if (start - end > 50) nextSlide();
+        if (end - start > 50) prevSlide();
+    }
+
+    function startTimer() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(() => {
+            if (!isPaused) nextSlide();
+        }, intervalMs);
+    }
+    
+    function stopTimer() {
+        if (timer) clearInterval(timer);
+    }
+    
+    function resetTimer() {
+        stopTimer();
+        startTimer();
+    }
+
+    // --- Dual Copy Logic (Integrated) ---
     let dualTimer = null;
     let dualState = 0; // 0 = primary, 1 = alt
 
-    function primeDualBackups() {
-      if (!dual) return;
-      const eyebrow = dual.querySelector("[data-copy-eyebrow]");
-      const title = dual.querySelector("[data-copy-title]");
-      const desc = dual.querySelector("[data-copy-desc]");
-      const points = dual.querySelector("[data-copy-points]");
-      const chips = dual.querySelector("[data-copy-chips]");
-      if (!eyebrow || !title || !desc || !points || !chips) return;
-
-      if (!eyebrow.dataset.primary) eyebrow.dataset.primary = eyebrow.textContent;
-      if (!title.dataset.primary) title.dataset.primary = title.textContent;
-      if (!desc.dataset.primary) desc.dataset.primary = desc.textContent;
-      if (!points.dataset.primary) points.dataset.primary = points.innerHTML;
-      if (!chips.dataset.primary) chips.dataset.primary = chips.innerHTML;
-    }
-
-    function setDualToPrimary() {
-      if (!dual) return;
-      primeDualBackups();
-
-      const eyebrow = dual.querySelector("[data-copy-eyebrow]");
-      const title = dual.querySelector("[data-copy-title]");
-      const desc = dual.querySelector("[data-copy-desc]");
-      const points = dual.querySelector("[data-copy-points]");
-      const chips = dual.querySelector("[data-copy-chips]");
-      if (!eyebrow || !title || !desc || !points || !chips) return;
-
-      dualState = 0;
-      eyebrow.textContent = eyebrow.dataset.primary || eyebrow.textContent;
-      title.textContent = title.dataset.primary || title.textContent;
-      desc.textContent = desc.dataset.primary || desc.textContent;
-      points.innerHTML = points.dataset.primary || points.innerHTML;
-      chips.innerHTML = chips.dataset.primary || chips.innerHTML;
-    }
-
-    function setDualToAlt() {
-      if (!dual) return;
-      primeDualBackups();
-
-      const altScript = dual.querySelector("[data-alt-copy]");
-      if (!altScript) return;
-
-      let alt = {};
-      try {
-        alt = JSON.parse(altScript.textContent || "{}");
-      } catch {
-        alt = {};
+    function startDualRotation() {
+      // Logic: Only run if on slide index 1 (the addlog/dual slide)
+      if (index !== 1) {
+        stopDualRotation();
+        setDualToPrimary();
+        return;
       }
 
-      const eyebrow = dual.querySelector("[data-copy-eyebrow]");
-      const title = dual.querySelector("[data-copy-title]");
-      const desc = dual.querySelector("[data-copy-desc]");
-      const points = dual.querySelector("[data-copy-points]");
-      const chips = dual.querySelector("[data-copy-chips]");
-      if (!eyebrow || !title || !desc || !points || !chips) return;
-
-      dualState = 1;
-      eyebrow.textContent = alt.eyebrow || "Narration";
-      title.textContent = alt.title || "";
-      desc.textContent = alt.desc || "";
-
-      const pts = Array.isArray(alt.points) ? alt.points : [];
-      points.innerHTML = pts.map((p) => `<li>${p}</li>`).join("");
-
-      const ch = Array.isArray(alt.chips) ? alt.chips : [];
-      chips.innerHTML = ch.map((c) => `<span class="chip">${c}</span>`).join("");
+      // If already running, do nothing (or reset?) - let's ensure fresh start
+      stopDualRotation();
+      
+      // Start interval
+      dualTimer = setInterval(() => {
+        if (isPaused) return; 
+        if (dualState === 0) setDualToAlt();
+        else setDualToPrimary();
+      }, 3000); // 3 seconds per flip
     }
 
     function stopDualRotation() {
@@ -376,95 +472,273 @@ console.log("🔵 main.js is loading...");
       dualTimer = null;
     }
 
-    function startDualRotation() {
+    function setDualToPrimary() {
+      const dual = slider.querySelector('[data-dual-copy="addlog"]');
       if (!dual) return;
-      stopDualRotation();
-      primeDualBackups();
-      dualTimer = setInterval(() => {
-        // only on AddLog slide; we assume it is slide index 1 (second slide)
-        if (index !== 1) return;
-        if (pausedByHover) return;
-        if (dualState === 0) setDualToAlt();
-        else setDualToPrimary();
-      }, 3200);
-    }
+      
+      // Elements
+      const eyebrow = dual.querySelector("[data-copy-eyebrow]");
+      const title = dual.querySelector("[data-copy-title]");
+      const desc = dual.querySelector("[data-copy-desc]");
+      const points = dual.querySelector("[data-copy-points]");
+      const chips = dual.querySelector("[data-copy-chips]");
+      if (!eyebrow) return; // safety check
 
-    function go(i) {
-      if (!track || !slides.length) return;
-
-      index = (i + slides.length) % slides.length;
-      track.style.transform = `translateX(${-index * 100}%)`;
-
-      if (dotsWrap) {
-        dotsWrap.querySelectorAll("button").forEach((b, bi) => {
-          b.setAttribute("aria-selected", bi === index ? "true" : "false");
-          b.classList.toggle("is-active", bi === index);
-        });
+      // Backup Primary Content ONCE
+      if (!eyebrow.dataset.primary) {    
+          eyebrow.dataset.primary = eyebrow.textContent;
+          title.dataset.primary = title.textContent;
+          desc.dataset.primary = desc.textContent;
+          points.dataset.primary = points.innerHTML;
+          chips.dataset.primary = chips.innerHTML;
       }
 
-      slides.forEach((s, si) => s.setAttribute("aria-hidden", si === index ? "false" : "true"));
+      dualState = 0;
+      eyebrow.textContent = eyebrow.dataset.primary;
+      title.textContent = title.dataset.primary;
+      desc.textContent = desc.dataset.primary;
+      points.innerHTML = points.dataset.primary;
+      chips.innerHTML = chips.dataset.primary;
+    }
 
-      // Reset dual copy whenever the slide changes
-      if (dual) {
-        setDualToPrimary();
+    function setDualToAlt() {
+      const dual = slider.querySelector('[data-dual-copy="addlog"]');
+      if (!dual) return;
+      
+      // Ensure backup happens first
+      const eyebrow = dual.querySelector("[data-copy-eyebrow]");
+      if (eyebrow && !eyebrow.dataset.primary) setDualToPrimary();
+
+      // Read JSON
+      const altScript = dual.querySelector("[data-alt-copy]");
+      if (!altScript) return;
+      let alt = {};
+      try { alt = JSON.parse(altScript.textContent || "{}"); } catch { alt = {}; }
+
+      // Elements
+      const title = dual.querySelector("[data-copy-title]");
+      const desc = dual.querySelector("[data-copy-desc]");
+      const points = dual.querySelector("[data-copy-points]");
+      const chips = dual.querySelector("[data-copy-chips]");
+
+      dualState = 1;
+      if (eyebrow) eyebrow.textContent = alt.eyebrow || "Narration";
+      if (title) title.textContent = alt.title || "";
+      if (desc) desc.textContent = alt.desc || "";
+      
+      if (points) {
+        const pts = Array.isArray(alt.points) ? alt.points : [];
+        points.innerHTML = pts.map((p) => `<li>${p}</li>`).join("");
+      }
+      
+      if (chips) {
+        const ch = Array.isArray(alt.chips) ? alt.chips : [];
+        chips.innerHTML = ch.map((c) => `<span class="chip">${c}</span>`).join("");
       }
     }
 
-    // Dots
-    if (dotsWrap) {
-      dotsWrap.innerHTML = "";
-      slides.forEach((_, i) => {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "dot";
-        b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-        b.setAttribute("aria-selected", i === 0 ? "true" : "false");
-        b.addEventListener("click", () => {
-          go(i);
-          start(); // may be ignored if pausedByHover
-        });
-        dotsWrap.appendChild(b);
-      });
-    }
-
-    // Controls
-    if (prevBtn) prevBtn.addEventListener("click", () => { go(index - 1); start(); });
-    if (nextBtn) nextBtn.addEventListener("click", () => { go(index + 1); start(); });
-
-    // Pause on hover/focus (robust)
-    const pause = () => setPaused(true);
-    const resume = () => setPaused(false);
-
-    slider.addEventListener("pointerenter", pause, true);
-    slider.addEventListener("pointerleave", resume, true);
-    slider.addEventListener("mouseenter", pause, true);
-    slider.addEventListener("mouseleave", resume, true);
-    slider.addEventListener("focusin", pause, true);
-    slider.addEventListener("focusout", resume, true);
-
-    // Swipe
-    let startX = 0, dx = 0, down = false;
-    track?.addEventListener("pointerdown", (e) => {
-      down = true;
-      startX = e.clientX;
-      dx = 0;
-      track.setPointerCapture(e.pointerId);
-    });
-    track?.addEventListener("pointermove", (e) => {
-      if (!down) return;
-      dx = e.clientX - startX;
-    });
-    track?.addEventListener("pointerup", () => {
-      if (!down) return;
-      down = false;
-      if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
-      start();
-    });
-
-    // Init
-    go(0);
-    start();
+    // Start
+    init();
+    // Kickoff dual logic check immediately (in case start index is 1, though usually 0)
     startDualRotation();
+  }
+
+  // ----------------------------
+  // Screenshot Management System
+  // ----------------------------
+  const screenshotData = {
+    dashboard: {
+      mobile: {
+        dark: 'assets/img/screenshots/mobile_screenshots/dd_dashboardscreen_mobile_dark.png',
+        light: 'assets/img/screenshots/mobile_screenshots/dd_dashboardscreen_mobile_light.png'
+      },
+      tablet: {
+        dark: 'assets/img/screenshots/tablet_screenshots/dd_dashboardscreen_tablet_dark.png',
+        light: 'assets/img/screenshots/tablet_screenshots/dd_dashboardscreen_tablet_light.png'
+      }
+    },
+    addlog: {
+      mobile: {
+        dark: 'assets/img/screenshots/mobile_screenshots/dd_addlogscreen_mobile_dark.png',
+        light: 'assets/img/screenshots/mobile_screenshots/dd_addlogscreen_mobile_light.png'
+      },
+      tablet: {
+        dark: 'assets/img/screenshots/tablet_screenshots/dd_addlogscreen_tablet_dark.png',
+        light: 'assets/img/screenshots/tablet_screenshots/dd_addlogscreen_tablet_light.png'
+      }
+    },
+    calendar: {
+      mobile: {
+        dark: 'assets/img/screenshots/mobile_screenshots/dd_calendarscreen_mobile_dark.png',
+        light: 'assets/img/screenshots/mobile_screenshots/dd_calendarscreen_mobile_light.png'
+      },
+      tablet: {
+        dark: 'assets/img/screenshots/tablet_screenshots/dd_calendarscreen_tablet_dark.png',
+        light: 'assets/img/screenshots/tablet_screenshots/dd_calendarscreen_tablet_light.png'
+      }
+    },
+    moodtracker: {
+      mobile: {
+        dark: 'assets/img/screenshots/mobile_screenshots/dd_moodtrackerscreen_mobile_dark.png',
+        light: 'assets/img/screenshots/mobile_screenshots/dd_moodtrackerscreen_mobile_light.png'
+      },
+      tablet: {
+        dark: 'assets/img/screenshots/tablet_screenshots/dd_moodtrackerscreen_tablet_dark.png',
+        light: 'assets/img/screenshots/tablet_screenshots/dd_moodtrackerscreen_tablet_light.png'
+      }
+    },
+    moodinsights: {
+      mobile: {
+        dark: 'assets/img/screenshots/mobile_screenshots/dd_moodinsightsscreen_mobile_dark.png',
+        light: 'assets/img/screenshots/mobile_screenshots/dd_moodinsightsscreen_mobile_light.png'
+      },
+      tablet: {
+        dark: 'assets/img/screenshots/tablet_screenshots/dd_moodinsightsscreen_tablet_dark.png',
+        light: 'assets/img/screenshots/tablet_screenshots/dd_moodinsightsscreen_tablet_light.png'
+      }
+    },
+    quicknotes: {
+      mobile: {
+        dark: 'assets/img/screenshots/mobile_screenshots/dd_quicknotesscreen_mobile_dark.png',
+        light: 'assets/img/screenshots/mobile_screenshots/dd_quicknotesscreen_mobile_light.png'
+      },
+      tablet: {
+        dark: 'assets/img/screenshots/tablet_screenshots/dd_quicknotescreen_tablet_dark.png',
+        light: 'assets/img/screenshots/tablet_screenshots/dd_quicknotescreen_tablet_light.png'
+      }
+    }
+  };
+
+  let currentDevice = localStorage.getItem('dd-device') || 'mobile';
+
+  function updateScreenshots() {
+    const theme = root.getAttribute('data-theme') || 'dark';
+    const screenshots = document.querySelectorAll('[data-screenshot]');
+    
+    screenshots.forEach(img => {
+      const screenName = img.getAttribute('data-screenshot');
+      if (screenshotData[screenName] && screenshotData[screenName][currentDevice]) {
+        const newSrc = screenshotData[screenName][currentDevice][theme];
+        // Check using endsWith to handle absolute vs relative paths
+        if (!img.src.endsWith(newSrc)) {
+          img.classList.add('loading');
+          const preload = new Image();
+          preload.onload = () => {
+            img.src = newSrc;
+            setTimeout(() => img.classList.remove('loading'), 50);
+          };
+          preload.src = newSrc;
+        }
+      }
+    });
+  }
+
+  // Device toggle functionality
+  const deviceToggleBtns = document.querySelectorAll('[data-device]');
+  deviceToggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const device = btn.getAttribute('data-device');
+      if (device === currentDevice) return;
+      
+      currentDevice = device;
+      localStorage.setItem('dd-device', device);
+      
+      // Update button states
+      deviceToggleBtns.forEach(b => {
+        const isActive = b.getAttribute('data-device') === device;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      
+      // Update screenshots
+      updateScreenshots();
+    });
+    
+    // Set initial state
+    if (btn.getAttribute('data-device') === currentDevice) {
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+    } else {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-selected', 'false');
+    }
+  });
+
+  // Enhance theme toggle to update screenshots
+  const originalSetTheme = setTheme;
+  setTheme = function(mode) {
+    originalSetTheme(mode);
+    updateScreenshots();
+  };
+
+  // Initial screenshot load
+  updateScreenshots();
+
+  // Reveal device selector
+  const deviceSelector = document.querySelector('.device-selector');
+  if (deviceSelector && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.classList.add('is-visible');
+            io.unobserve(en.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    io.observe(deviceSelector);
+  } else if (deviceSelector) {
+    deviceSelector.classList.add('is-visible');
+  }
+
+  // ----------------------------
+  // Enhanced Image Lazy Loading
+  // ----------------------------
+  if ('IntersectionObserver' in window) {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.classList.add('loaded');
+          imageObserver.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '50px'
+    });
+    
+    lazyImages.forEach(img => {
+      imageObserver.observe(img);
+      img.addEventListener('load', () => {
+        img.classList.add('loaded');
+      });
+    });
+  }
+
+  // ----------------------------
+  // Smooth Scroll Enhancements
+  // ----------------------------
+  const scrollToTop = document.querySelector('.scroll-to-top');
+  if (scrollToTop) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollToTop.style.opacity = '1';
+        scrollToTop.style.pointerEvents = 'auto';
+      } else {
+        scrollToTop.style.opacity = '0';
+        scrollToTop.style.pointerEvents = 'none';
+      }
+    });
+    
+    scrollToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
   }
 
   // ----------------------------
