@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
 
   <title>Tester NDA — Dear Diary</title>
-  <meta name="description" content="Tester Non-Disclosure & Confidentiality Agreement for Dear Diary beta testers." />
+  <meta name="description" content="Tester Non-Disclosure & Confidentiality Agreement for Dear Diary closed testing participants." />
   <meta name="robots" content="noindex, nofollow" />
 
   <link rel="icon" href="assets/img/logo.png" type="image/png" />
@@ -146,7 +146,7 @@
             </div>
             <h1 style="font-size: clamp(28px, 5vw, 48px); margin: 0 0 14px; line-height: 1.15;">Tester NDA &amp; Confidentiality Agreement</h1>
             <p style="font-size: 17px; max-width: 680px; margin: 0 auto; opacity: 0.8;">
-              Please read this agreement carefully before participating in the Dear Diary beta programme.
+              Please read this agreement carefully before participating in the Dear Diary closed testing programme.
             </p>
             <div style="margin-top: 24px;">
               <a class="btn" href="Dear Diary – Tester NDA _ Confidentiality Agreement.pdf" download style="margin-right: 12px;">
@@ -164,17 +164,18 @@
         <div class="nda-viewer-wrap" data-reveal>
           <iframe
             id="nda-frame"
-            src="Dear Diary – Tester NDA _ Confidentiality Agreement.pdf"
+            src=""
             title="Dear Diary Tester NDA and Confidentiality Agreement"
             aria-label="PDF viewer for the Tester NDA"
+            allowfullscreen
           ></iframe>
         </div>
 
-        <!-- Fallback for browsers that cannot display PDFs inline -->
+        <!-- Fallback: shown on devices where the viewer cannot load -->
         <div class="nda-fallback" id="nda-fallback">
-          <p style="margin-bottom: 20px;">Your browser cannot display this PDF inline.</p>
-          <a class="btn btn-primary" href="Dear Diary – Tester NDA _ Confidentiality Agreement.pdf" target="_blank" rel="noopener">
-            Open PDF in new tab
+          <p style="margin-bottom: 20px;">Unable to display the PDF in your browser.</p>
+          <a class="btn btn-primary" id="nda-open-btn" href="Dear Diary – Tester NDA _ Confidentiality Agreement.pdf" target="_blank" rel="noopener">
+            Open PDF
           </a>
         </div>
       </div>
@@ -225,15 +226,50 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/overhaul.js"></script>
   <script>
-    // Show fallback message if the PDF iframe fails to load
     (function () {
-      var frame = document.getElementById('nda-frame');
+      // PDF filename (URL-encoded for use in Google Docs Viewer)
+      var PDF_PATH = 'Dear%20Diary%20%E2%80%93%20Tester%20NDA%20_%20Confidentiality%20Agreement.pdf';
+      var PDF_DIRECT = 'Dear Diary \u2013 Tester NDA _ Confidentiality Agreement.pdf';
+
+      var frame   = document.getElementById('nda-frame');
       var fallback = document.getElementById('nda-fallback');
-      if (frame) {
-        frame.addEventListener('error', function () {
-          frame.style.display = 'none';
-          fallback.classList.add('visible');
-        });
+      var openBtn  = document.getElementById('nda-open-btn');
+
+      // Build absolute base URL so Google Docs Viewer can fetch the file
+      var origin = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
+      var pdfPublicUrl = origin + PDF_PATH;
+      var gdocsUrl = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(pdfPublicUrl);
+
+      // Detect mobile / tablet (touch devices that typically can't render PDF inline)
+      var isMobile = /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        // Use Google Docs Viewer — works on all mobile browsers
+        frame.src = gdocsUrl;
+        if (openBtn) openBtn.href = PDF_DIRECT;
+      } else {
+        // Desktop: native browser PDF renderer is fine
+        frame.src = PDF_DIRECT;
+        if (openBtn) openBtn.href = PDF_DIRECT;
+      }
+
+      // If iframe fails for any reason, show the fallback open button
+      frame.addEventListener('error', function () {
+        frame.closest('.nda-viewer-wrap').style.display = 'none';
+        fallback.classList.add('visible');
+      });
+
+      // Additional safety: if iframe stays blank after 12 s on mobile, show fallback
+      if (isMobile) {
+        setTimeout(function () {
+          try {
+            var doc = frame.contentDocument || frame.contentWindow.document;
+            if (!doc || doc.body.innerHTML === '') {
+              frame.closest('.nda-viewer-wrap').style.display = 'none';
+              fallback.classList.add('visible');
+            }
+          } catch (e) { /* cross-origin — viewer loaded fine */ }
+        }, 12000);
       }
     })();
   </script>
