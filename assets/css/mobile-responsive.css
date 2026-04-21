@@ -188,8 +188,8 @@
     }
 
     .drawer-links a:active {
-        background: rgba(245, 158, 11, 0.15);
-        color: #f59e0b;
+        background: rgba(212, 175, 55, 0.15);
+        color: #D4AF37;
         transform: translateX(4px);
     }
 
@@ -458,7 +458,7 @@
         box-shadow: 
             inset 0 0 4px rgba(255,255,255,0.2), 
             0 20px 40px rgba(0,0,0,0.6),
-            0 0 40px rgba(245, 158, 11, 0.2);
+            0 0 40px rgba(212, 175, 55, 0.2);
         border: 2px solid #333;
         opacity: 1;
         visibility: visible;
@@ -549,7 +549,7 @@
         font-size: 1rem;
         font-weight: 600;
         padding: 14px 28px;
-        background: rgba(245, 158, 11, 0.15);
+        background: rgba(212, 175, 55, 0.15);
         border: 2px solid var(--accent-gold);
         border-radius: 12px;
         color: var(--accent-gold);
@@ -1087,7 +1087,7 @@
         box-shadow: 
             inset 0 0 4px rgba(255,255,255,0.2), 
             0 20px 40px rgba(0,0,0,0.6),
-            0 0 40px rgba(245, 158, 11, 0.2);
+            0 0 40px rgba(212, 175, 55, 0.2);
         border: 2px solid #333;
     }
     

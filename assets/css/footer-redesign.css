@@ -105,13 +105,13 @@
 }
 
 .social-link:hover {
-    background: rgba(245, 158, 11, 0.1);
+    background: rgba(212, 175, 55, 0.1);
     transform: translateY(-2px);
 }
 
 .social-link:hover svg {
     stroke: var(--text-primary);
-    filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
 }
 
 /* Legal Basement */

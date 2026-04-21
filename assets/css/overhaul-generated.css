@@ -16,7 +16,7 @@
 
 /* Amber Glow & Glow Transition */
 .shot-stage img {
-    filter: drop-shadow(0 0 60px rgba(245, 158, 11, 0.15));
+    filter: drop-shadow(0 0 60px rgba(212, 175, 55, 0.15));
     transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.3s ease;
     will-change: transform, filter; 
 }
@@ -96,7 +96,7 @@
     background: var(--accent-gold);
     color: var(--bg-deep-navy);
     border-color: var(--accent-gold);
-    box-shadow: 0 5px 20px rgba(245, 158, 11, 0.25);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.25);
     transform: translateY(-2px);
 }
 
@@ -328,7 +328,7 @@
     background: var(--accent-gold);
     border-radius: 4px;
     animation: soundWave 1.2s ease-in-out infinite;
-    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
 /* Specific heights relative to container */
@@ -599,7 +599,7 @@
 
 .play-badge:hover {
     transform: translateY(-2px);
-    border-color: #F59E0B; /* Gold Hover */
+    border-color: #D4AF37;
 }
 
 .play-icon {

@@ -6,15 +6,24 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=5" />
   <meta name="theme-color" content="#101B27" media="(prefers-color-scheme: dark)" />
   <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
-  <title>Dear Diary — Private Offline Journal</title>
+  <title>Dear Diary — Private Journal App</title>
   <meta name="description"
-    content="Dear Diary is a private, offline-first journaling app with encrypted local storage, biometric lock, mood tracking, quick notes, and user-controlled exports." />
+    content="Dear Diary is a private, offline journaling app for Android — with cinematic Story Mode, daily photo journaling, and on-device mood intelligence." />
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="Dear Diary — Private Journal App" />
+  <meta property="og:description" content="Dear Diary is a private, offline journaling app for Android — with cinematic Story Mode, daily photo journaling, and on-device mood intelligence." />
+  <meta property="og:image" content="assets/img/screenshots/mobile_screenshots/dd_dashboardscreen_mobile_dark.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dear Diary — Private Journal App" />
+  <meta name="twitter:description" content="No cloud. No servers. No one reading your diary but you." />
   <link rel="icon" href="assets/img/logo.png" type="image/png" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/overhaul-generated.css" />
   <link rel="stylesheet" href="assets/css/footer-redesign.css" />
   <link rel="stylesheet" href="assets/css/content-styles.css" />
   <link rel="stylesheet" href="assets/css/mobile-responsive.css" />
+  <link rel="stylesheet" href="assets/css/redesign.css" />
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,19 +63,16 @@
         <div class="nav-links" role="navigation">
           <a href="#features">Features</a>
           <a href="#screenshots">Screenshots</a>
-          <a href="#security">Privacy & Security</a>
+          <a href="#security">Privacy</a>
           <a href="#faq">FAQ</a>
-          <a href="#play">Google Play</a>
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-          <a href="contact.html">Support</a>
+          <a href="https://play.google.com/store/apps/details?id=com.mydeardiaryjournal.app&hl=en_IN" target="_blank" rel="noopener">Google Play ↗</a>
         </div>
 
         <div class="nav-actions">
           <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme">
             <span data-theme-icon aria-hidden="true">🌙</span>
           </button>
-          <a class="btn btn-primary" href="#play">Coming soon</a>
+          <a class="btn btn-primary" href="#download">Get it on Google Play</a>
         </div>
       </nav>
 
@@ -87,7 +93,7 @@
           <a href="#screenshots">Screenshots</a>
           <a href="#security">Privacy & Security</a>
           <a href="#faq">FAQ</a>
-          <a href="#play">Google Play</a>
+          <a href="https://play.google.com/store/apps/details?id=com.mydeardiaryjournal.app&hl=en_IN" target="_blank" rel="noopener">Google Play</a>
           <hr class="hr" />
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
@@ -98,7 +104,7 @@
           <button class="btn" type="button" data-theme-toggle>
             <span>Theme: <b data-theme-label>Dark</b></span>
           </button>
-          <a class="btn btn-primary" href="#play">Coming soon</a>
+          <a class="btn btn-primary" href="#download">Get it on Google Play</a>
         </div>
       </div>
     </div>
@@ -115,10 +121,10 @@
               Your Private <span class="highlight-gold">Sanctuary</span>.
             </h1>
             <p class="sub-hero">
-              A completely offline, aesthetically pleasing diary that turns your memories into magical artifacts.
+              Your private sanctuary — no clouds, no servers, just you. Keep a diary the way it was always meant to be: private, personal, and entirely yours.
             </p>
             <div class="hero-cta">
-              <a href="#download" class="btn-glass">Download for Android</a>
+              <a href="#download" class="btn-glass">Get it on Google Play</a>
             </div>
           </div>
 
@@ -597,9 +603,10 @@
                <div class="lock-icon-wrap">
                    <svg class="lock-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="goldGradientLarge" x1="0" y1="0" x2="0" y2="100%">
-                                <stop offset="0%" stop-color="#fbbf24" />
-                                <stop offset="100%" stop-color="#b45309" />
+                            <linearGradient id="goldGradientLarge" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#FFDF73" />
+                                <stop offset="50%" stop-color="#D4AF37" />
+                                <stop offset="100%" stop-color="#996515" />
                             </linearGradient>
                              <filter id="shadow">
                                 <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.3"/>
@@ -609,6 +616,192 @@
                     </svg>
                    <div class="laser-scan"></div>
                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY MODE DEEP DIVE -->
+    <section id="story-mode" class="section" data-smooth-reveal>
+      <div class="container">
+        <div class="glass-panel" style="padding: 48px 40px;">
+          <div style="position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%); pointer-events: none;"></div>
+          <div class="section-title" style="text-align: left; margin-bottom: 32px;">
+            <span class="feature-section-label">⭐ Premium Feature</span>
+            <h2 style="margin-bottom: 16px;">Every Journey Deserves a Film.</h2>
+            <p style="max-width: 700px; margin: 0;">Story Mode is a cinematic journey recorder built for travellers and memory-keepers. Start a journey before you leave, capture moments along the way — photos, videos, audio, text notes, each pinned to a GPS location — then replay the entire trip as a beautifully animated film on a map. Watch a transport icon glide along your route as your captured moments appear one by one in perfect sequence.</p>
+          </div>
+          <div class="why-grid" data-stagger>
+            <div class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <h3 class="why-title">Capture with Context</h3>
+              <p class="why-description">Photos, videos, audio, or text notes — each tagged to GPS location and timestamp as you travel</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="10" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 11l9-8 9 8" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              </div>
+              <h3 class="why-title">Choose Your Transport</h3>
+              <p class="why-description">Bicycle, motorbike, car, train, ship, or aeroplane — an animated icon traces your exact route during replay</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none"><polygon points="23 7 16 12 23 17 23 7" stroke="currentColor" stroke-width="2"/><rect x="1" y="5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <h3 class="why-title">Cinematic Replay</h3>
+              <p class="why-description">Watch your journey unfold on a map as your captured moments appear in perfect sequence — like a film</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="currentColor" stroke-width="2"/><polyline points="7 10 12 15 17 10" stroke="currentColor" stroke-width="2"/><line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <h3 class="why-title">Export as Video</h3>
+              <p class="why-description">Save replay as MP4 — choose Compressed, Full HD, or Lossless quality to keep forever</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <h3 class="why-title">Story Hub</h3>
+              <p class="why-description">All journeys searchable, filterable, and instantly replayable in one place — your complete travel archive</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <h3 class="why-title">First Journey Free</h3>
+              <p class="why-description">Unlock unlimited journeys with Premium — your first journey is always on us</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAILY GLIMPSE DEEP DIVE -->
+    <section id="daily-glimpse" class="section" data-smooth-reveal>
+      <div class="container">
+        <div class="glass-panel" style="padding: 48px 40px;">
+          <div class="section-title" style="text-align: left; margin-bottom: 32px;">
+            <span class="feature-section-label">⭐ Premium Feature</span>
+            <h2 style="margin-bottom: 16px;">One Photo. Every Day. A Lifetime of Moments.</h2>
+            <p style="max-width: 700px; margin: 0;">Daily Glimpse is your visual memory trail. Take one photo each day — just one — and watch your life assemble itself into a gallery of moments you would have otherwise forgotten. It is not a social media feed. It is a private archive of your days.</p>
+          </div>
+          <div class="why-grid" data-stagger>
+            <div class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <h3 class="why-title">One Photo a Day</h3>
+              <p class="why-description">Capture or select from your camera or gallery — one meaningful photo, every day, no pressure</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <h3 class="why-title">Visual Grid Gallery</h3>
+              <p class="why-description">Browse by date — see the shape of your months at a glance, like a wall of warm, personal memories</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              </div>
+              <h3 class="why-title">Streak Counter</h3>
+              <p class="why-description">Track your consecutive days of photos — build the habit of noticing one beautiful thing every day</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none"><polygon points="23 7 16 12 23 17 23 7" stroke="currentColor" stroke-width="2"/><rect x="1" y="5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <h3 class="why-title">Export as Video Reel</h3>
+              <p class="why-description">Turn your entire photo collection into a cinematic MP4 reel — your year in frames</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOOD TRACKER + INTELLIGENCE DEEP DIVE -->
+    <section id="mood-tracker" class="section" data-smooth-reveal>
+      <div class="container">
+        <div class="glass-panel" style="padding: 48px 40px;">
+          <div class="section-title" style="text-align: left; margin-bottom: 32px;">
+            <h2 style="margin-bottom: 16px;">How Are You, Really?</h2>
+            <p style="max-width: 700px; margin: 0;">Most mood apps give you a slider from 1 to 10. Dear Diary gives you language. Choose from over 50 specific named moods grouped into 10 emotional families, set an intensity, add a note — and the app quietly reflects your patterns back to you. No internet needed. No data shared. Just you, understanding yourself a little better.</p>
+          </div>
+
+          <h3 style="font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 8px; color: var(--text-primary); opacity: 0.8;">The 10 Emotional Families</h3>
+          <div class="mood-families-grid">
+            <div class="mood-family-card">
+              <span class="mood-family-emoji">✨</span>
+              <div class="mood-family-name">Joyful &amp; Energised</div>
+              <div class="mood-family-desc">Happiness, excitement, motivation, pride</div>
+            </div>
+            <div class="mood-family-card">
+              <span class="mood-family-emoji">🌿</span>
+              <div class="mood-family-name">Calm &amp; Grounded</div>
+              <div class="mood-family-desc">Peace, contentment, relief, safety</div>
+            </div>
+            <div class="mood-family-card">
+              <span class="mood-family-emoji">💛</span>
+              <div class="mood-family-name">Love &amp; Connection</div>
+              <div class="mood-family-desc">Gratitude, compassion, trust, support</div>
+            </div>
+            <div class="mood-family-card">
+              <span class="mood-family-emoji">🌤️</span>
+              <div class="mood-family-name">Neutral &amp; Mixed</div>
+              <div class="mood-family-desc">Okay, bored, confused, indifferent</div>
+            </div>
+            <div class="mood-family-card">
+              <span class="mood-family-emoji">🌧️</span>
+              <div class="mood-family-name">Anxious &amp; Worried</div>
+              <div class="mood-family-desc">Stress, nervousness, overwhelm, panic</div>
+            </div>
+            <div class="mood-family-card">
+              <span class="mood-family-emoji">🌋</span>
+              <div class="mood-family-name">Angry &amp; Irritated</div>
+              <div class="mood-family-desc">Frustration, resentment, irritation</div>
+            </div>
+            <div class="mood-family-card">
+              <span class="mood-family-emoji">🌙</span>
+              <div class="mood-family-name">Sad &amp; Low</div>
+              <div class="mood-family-desc">Loneliness, disappointment, fatigue, grief</div>
+            </div>
+            <div class="mood-family-card">
+              <span class="mood-family-emoji">🌸</span>
+              <div class="mood-family-name">Intimate &amp; Desire</div>
+              <div class="mood-family-desc">Romance, affection, passion, desire</div>
+            </div>
+            <div class="mood-family-card">
+              <span class="mood-family-emoji">🎨</span>
+              <div class="mood-family-name">Aesthetic &amp; Awe</div>
+              <div class="mood-family-desc">Wonder, nostalgia, amazement</div>
+            </div>
+            <div class="mood-family-card">
+              <span class="mood-family-emoji">🪞</span>
+              <div class="mood-family-name">Self-aware &amp; Social</div>
+              <div class="mood-family-desc">Embarrassment, jealousy, awkwardness</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 40px;" class="why-grid" data-stagger>
+            <div class="why-card">
+              <h3 class="why-title">50+ Named Moods</h3>
+              <p class="why-description">Not just "happy" or "sad" — choose from specific feelings like nostalgic, overwhelmed, or grateful, with an intensity level for each</p>
+            </div>
+            <div class="why-card">
+              <h3 class="why-title">A Gentle Reflection After Each Entry</h3>
+              <p class="why-description">After logging, the app quietly reflects back what may have shaped your mood and offers a gentle prompt — like a thoughtful friend, not a therapist</p>
+            </div>
+            <div class="why-card">
+              <h3 class="why-title">See Your Patterns Over Time</h3>
+              <p class="why-description">Look back at a week, two weeks, or a month — see which emotions show up most, when they tend to peak, and how you recover</p>
+            </div>
+            <div class="why-card">
+              <h3 class="why-title">Everything Stays on Your Phone</h3>
+              <p class="why-description">No internet needed. The app figures out your patterns on its own — nothing is sent to any server, ever</p>
             </div>
           </div>
         </div>
@@ -634,16 +827,15 @@
                 <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <h3 class="why-title">Local-First Architecture</h3>
+            <h3 class="why-title">Lives Only on Your Phone</h3>
             <p class="why-description">
-              All your diary entries, moods, notes, and media are stored exclusively on your device using encrypted
-              SQLCipher database. No servers, no cloud sync, no third-party access.
+              Everything you write stays on your device. No cloud, no sync, no third-party servers. It works
+              whether or not you have internet — always.
             </p>
             <ul class="why-features">
-              <li>SQLCipher 256-bit encryption</li>
-              <li>Works completely offline</li>
-              <li>Instant sync-free writing</li>
-              <li>No subscription required</li>
+              <li>Works 100% offline</li>
+              <li>No account or sign-in ever</li>
+              <li>Nothing stored outside your phone</li>
             </ul>
           </div>
 
@@ -654,16 +846,15 @@
                 <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3 class="why-title">Military-Grade Security</h3>
+            <h3 class="why-title">Locked Like a Bank Vault</h3>
             <p class="why-description">
-              Your content is protected with the same encryption technology used by governments and financial
-              institutions, combined with biometric authentication for secure access.
+              Unlock with your fingerprint or a password you set. The encryption used to protect your diary
+              is the same standard used to protect financial data worldwide.
             </p>
             <ul class="why-features">
-              <li>Fingerprint & face unlock</li>
-              <li>Android Keystore integration</li>
-              <li>EncryptedSharedPreferences</li>
-              <li>Zero-knowledge architecture</li>
+              <li>Fingerprint unlock</li>
+              <li>12-word recovery phrase</li>
+              <li>We can't read your data either</li>
             </ul>
           </div>
 
@@ -674,16 +865,15 @@
                 <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3 class="why-title">Rich Multimedia Journaling</h3>
+            <h3 class="why-title">More Than Just Words</h3>
             <p class="why-description">
-              Go beyond text with photos, videos, and audio recordings. Natural voice narration lets you listen back
-              to your entries like a personal audiobook.
+              Attach photos, videos, and voice recordings to any entry. Then sit back and let Dear Diary
+              read it back to you in a natural voice.
             </p>
             <ul class="why-features">
-              <li>Photo & video attachments</li>
-              <li>Audio diary recordings</li>
-              <li>Natural voice narration</li>
-              <li>Calendar gallery view</li>
+              <li>Photos, videos, audio attachments</li>
+              <li>Voice narration of your entries</li>
+              <li>Browse by calendar date</li>
             </ul>
           </div>
 
@@ -693,16 +883,15 @@
                 <path d="M12 21s7-4.4 7-11a4 4 0 0 0-7-2 4 4 0 0 0-7 2c0 6.6 7 11 7 11z" stroke="currentColor" stroke-width="2"/>
               </svg>
             </div>
-            <h3 class="why-title">Mood Tracking & Insights</h3>
+            <h3 class="why-title">Understand How You Feel</h3>
             <p class="why-description">
-              Track your emotional wellbeing with detailed mood logs. Export beautiful reports in PDF, CSV, or JSON
-              formats to share with therapists or keep for yourself.
+              Log your mood from 50+ specific emotions across 10 feeling families. The app gently reflects
+              patterns back to you — no judgment, no diagnosis, just quiet understanding.
             </p>
             <ul class="why-features">
-              <li>Detailed mood check-ins</li>
-              <li>Visual insights & trends</li>
-              <li>Export reports you control</li>
-              <li>Pattern recognition</li>
+              <li>50+ named moods to choose from</li>
+              <li>Weekly &amp; monthly trend views</li>
+              <li>All insights stay on your phone</li>
             </ul>
           </div>
 
@@ -713,16 +902,15 @@
                 <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3 class="why-title">Notes & Reminders</h3>
+            <h3 class="why-title">Quick Notes &amp; Reminders</h3>
             <p class="why-description">
-              Capture quick thoughts with text notes and checklists. Set reminders to keep your life organized without
-              leaving your journal.
+              Jot down a thought before it disappears. Write a checklist, set a reminder, pick a colour —
+              all stored in the same private space as your journal.
             </p>
             <ul class="why-features">
-              <li>Quick capture notes</li>
-              <li>Checklist support</li>
-              <li>Smart reminders</li>
-              <li>Search & organize</li>
+              <li>Text notes &amp; checklists</li>
+              <li>Colour-coded organisation</li>
+              <li>Reminders that actually work</li>
             </ul>
           </div>
 
@@ -734,67 +922,129 @@
                 <path d="M20 8v6M23 11h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3 class="why-title">No Account Required</h3>
+            <h3 class="why-title">Open the App, Start Writing</h3>
             <p class="why-description">
-              Start journaling immediately with zero setup. No email, no password, no cloud registration. Just install
-              and begin your private journaling journey.
+              No sign-up form, no email, no cloud registration. Install it and you're home. Your diary
+              belongs to you from the very first word.
             </p>
             <ul class="why-features">
-              <li>Instant start</li>
-              <li>No personal info required</li>
-              <li>No tracking or analytics</li>
-              <li>No advertisements ever</li>
+              <li>No account needed, ever</li>
+              <li>No ads, no tracking</li>
+              <li>Free to download</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECURITY -->
-    <section id="security" class="section">
+    <!-- PRIVACY HERO SECTION -->
+    <section id="security" class="section" data-smooth-reveal>
       <div class="container">
         <div class="section-title" data-reveal>
           <div>
-            <h2>Uncompromising Security</h2>
-            <p>We treat your memories like a bank vault. Zero knowledge, zero tracking.</p>
+            <h2>Your Diary Belongs to You.</h2>
+            <p>Not to a server. Not to us. Every word, photo, and mood lives only on your device.</p>
           </div>
         </div>
 
-        <!-- The 3 Pillars Grid -->
-        <div class="security-grid" data-reveal>
-           <!-- Pillar 1: The Vault -->
-           <div class="glass-panel pillar-card">
-              <svg class="pillar-icon pillar-icon-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11v6m0 0l-3-3m3 3l3-3" opacity="0.5"/>
-              </svg>
-              <h3>Local-First Storage</h3>
-              <p>Your data lives physically on this device. No cloud servers means no leaks.</p>
-              <span class="pillar-badge">SQLCipher 256-bit</span>
-           </div>
+        <p class="privacy-pull-quote">"Your diary belongs to you."</p>
+        <p style="text-align: center; max-width: 680px; margin: 0 auto 48px; opacity: 0.8; line-height: 1.75;">
+          Your diary is the most private thing you own. Dear Diary was built around one rule: your words never leave your phone. No accounts. No cloud backup happening behind your back. No analytics watching what you write. When you set a password, the key is generated on your device and never transmitted anywhere — if you forget it, even we can't help you recover it. That is the point.
+        </p>
 
-           <!-- Pillar 2: The Gate -->
-           <div class="glass-panel pillar-card">
-              <svg class="pillar-icon pillar-icon-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.2-2.85.59-4.171" />
-              </svg>
-              <h3>Biometric & Password</h3>
-              <p>Unlock instantly with fingerprint/face ID, or set a custom master password. You hold the only keys.</p>
-           </div>
-
-           <!-- Pillar 3: The Escape -->
-           <div class="glass-panel pillar-card">
-              <svg class="pillar-icon pillar-icon-green" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-              </svg>
-              <h3>Exports & Backups</h3>
-              <p>Export reports to PDF/CSV. Plus, create full encrypted backups of your logs, media, and moods.</p>
-              <span class="pillar-badge">⭐ Premium Backup & Restore</span>
-           </div>
+        <div class="privacy-bullets-grid" data-reveal>
+          <div class="privacy-bullet-card">
+            <div class="privacy-bullet-icon">☁️</div>
+            <div>
+              <strong>Zero Cloud Storage</strong>
+              <span>No diary entry, photo, or mood ever leaves your device unless you explicitly export it</span>
+            </div>
+          </div>
+          <div class="privacy-bullet-card">
+            <div class="privacy-bullet-icon">📡</div>
+            <div>
+              <strong>Serverless Architecture</strong>
+              <span>The app works with no internet connection, always — no server dependency, ever</span>
+            </div>
+          </div>
+          <div class="privacy-bullet-card">
+            <div class="privacy-bullet-icon">🔒</div>
+            <div>
+              <strong>AES-256-GCM Encryption</strong>
+              <span>Industry-standard authenticated encryption protects every record in the database</span>
+            </div>
+          </div>
+          <div class="privacy-bullet-card">
+            <div class="privacy-bullet-icon">🔑</div>
+            <div>
+              <strong>PBKDF2 Key Derivation</strong>
+              <span>600,000 iterations, local-only, never transmitted — the standard used to protect financial data</span>
+            </div>
+          </div>
+          <div class="privacy-bullet-card">
+            <div class="privacy-bullet-icon">👆</div>
+            <div>
+              <strong>Biometric Authentication</strong>
+              <span>Fingerprint unlock; biometric key stored in Android Keystore — never extractable</span>
+            </div>
+          </div>
+          <div class="privacy-bullet-card">
+            <div class="privacy-bullet-icon">📝</div>
+            <div>
+              <strong>12-Word Recovery Phrase</strong>
+              <span>The only path back to your data if you forget your password. We don't have a copy.</span>
+            </div>
+          </div>
+          <div class="privacy-bullet-card">
+            <div class="privacy-bullet-icon">🚫</div>
+            <div>
+              <strong>No Analytics or Tracking</strong>
+              <span>No third-party SDKs harvest your usage patterns from inside the journal</span>
+            </div>
+          </div>
+          <div class="privacy-bullet-card">
+            <div class="privacy-bullet-icon">📵</div>
+            <div>
+              <strong>No Ads. Ever.</strong>
+              <span>Dear Diary has no advertising model. It earns through a one-time Premium purchase</span>
+            </div>
+          </div>
+          <div class="privacy-bullet-card">
+            <div class="privacy-bullet-icon">🧠</div>
+            <div>
+              <strong>On-Device Mood Intelligence</strong>
+              <span>All insight generation and trend analysis runs locally — no AI API is called, no data transmitted</span>
+            </div>
+          </div>
         </div>
 
-        <div class="security-action">
-           <a href="privacy.html" class="btn btn-gold-outline">Read Privacy Policy</a>
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="privacy.html" class="btn-gold-outline">Read Full Privacy Policy</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREMIUM SECTION -->
+    <section id="premium" class="section" data-smooth-reveal>
+      <div class="container">
+        <div class="premium-card" data-reveal>
+          <div class="section-title" style="text-align: left; margin-bottom: 32px;">
+            <span class="feature-section-label">Unlock Everything</span>
+            <h2 style="margin-bottom: 16px;">Free to Download. Premium Unlocks All Features.</h2>
+            <p style="max-width: 640px; margin: 0; opacity: 0.85;">The core diary is free forever. Premium unlocks the features that make Dear Diary feel complete — unlimited journeys, a daily photo archive, voice narration, and encrypted backups.</p>
+          </div>
+
+          <ul class="premium-features-list">
+            <li><span class="premium-check">✓</span> Unlimited Story Mode journeys</li>
+            <li><span class="premium-check">✓</span> Unlimited Daily Glimpse photos</li>
+            <li><span class="premium-check">✓</span> Automatic encrypted backup &amp; restore</li>
+            <li><span class="premium-check">✓</span> Premium narration voices</li>
+            <li><span class="premium-check">✓</span> Unlimited video exports (Story Mode + Glimpse)</li>
+            <li><span class="premium-check">✓</span> Incremental &amp; scheduled backups</li>
+          </ul>
+
+          <a href="#download" class="btn-gold">Get it on Google Play</a>
+          <span class="download-caption">Free to download — Premium unlocks all features</span>
         </div>
       </div>
     </section>
@@ -811,24 +1061,38 @@
 
         <div class="faq" data-reveal>
           <details class="faq-item">
-            <summary>Does Dear Diary require an account?</summary>
-            <div class="faq-body">No. The app is designed to work offline-first without requiring a cloud account.</div>
+            <summary>Can I use Dear Diary without internet?</summary>
+            <div class="faq-body">Yes, 100% offline. Dear Diary is designed to work with no internet connection, always. It requires no sign-in, no cloud sync, and no server connection of any kind.</div>
           </details>
 
           <details class="faq-item">
-            <summary>Where is my data stored?</summary>
-            <div class="faq-body">On your device. Content is intended to remain local, with optional app lock and
-              on-device encryption support.</div>
+            <summary>Does Dear Diary read my diary?</summary>
+            <div class="faq-body">No. All intelligence — mood insights, trend analysis, keyword detection — runs locally on your device. No AI API is called. No data ever leaves your phone.</div>
           </details>
 
           <details class="faq-item">
-            <summary>Can I export my mood history?</summary>
-            <div class="faq-body">Yes. You can export reports in PDF / CSV / JSON formats that you control.</div>
+            <summary>What happens if I forget my password?</summary>
+            <div class="faq-body">Only your 12-word recovery phrase can restore access. The developer cannot help recover your data because we never had access to it. This is by design — you set up a recovery phrase during onboarding, and that is the only key.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is my backup safe?</summary>
+            <div class="faq-body">Yes. Your backup is protected by a password only you know — without it, the file is unreadable by anyone. It is a Premium feature.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is Premium?</summary>
+            <div class="faq-body">Premium unlocks unlimited Story Mode journeys, unlimited Daily Glimpse photos, automatic encrypted backup &amp; restore, premium narration voices, and unlimited video exports.</div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is Dear Diary available on iPhone?</summary>
+            <div class="faq-body">No. Dear Diary is an Android-only app, available on the Google Play Store.</div>
           </details>
 
           <details class="faq-item">
             <summary>How do I contact support?</summary>
-            <div class="faq-body">Email us anytime at <b>mydeardiaryjournal@gmail.com</b> or use the Support page.</div>
+            <div class="faq-body">Email us anytime at <b>support@mydeardiaryapp.com</b> or visit the <a href="contact.html" style="color: var(--accent-gold);">Support page</a>.</div>
           </details>
         </div>
       </div>
@@ -842,9 +1106,9 @@
           <div class="finale-content">
             <!-- Left Side: Emotional Hook -->
             <div class="finale-text">
-              <h2>Begin Your Journey Inward.</h2>
-              <p class="sub">
-                Rediscover the joy of writing in a space that feels truly yours. Capture your days with photos, voice, and words—safe, offline, and beautifully quiet.
+              <h2>Your story starts here.</h2>
+              <p class="sub" style="opacity: 0.8; line-height: 1.75; margin-top: 12px;">
+                A private space to write freely, remember beautifully, and understand yourself a little better — every single day. No sign-up. No cloud. Just you.
               </p>
               
               <div class="trust-sigils">
@@ -882,76 +1146,19 @@
               </div>
             </div>
 
-            <!-- Right Side: Action -->
+            <!-- Right Side: Download CTA -->
             <div class="finale-action">
-              <a href="#" class="play-badge">
-                  <img src="assets/img/Google_Play_Arrow_logo.svg" 
-                       alt="Google Play Store" 
-                       class="play-icon"
-                       loading="lazy">
-                  
-                  <div class="play-text-col">
-                      <span class="play-label">GET IT ON</span>
-                      <span class="play-name">Google Play</span>
-                  </div>
+              <a href="https://play.google.com/store/apps/details?id=com.mydeardiaryjournal.app&hl=en_IN" class="btn-gold" style="font-size: 1.1rem; padding: 18px 40px;" target="_blank" rel="noopener">
+                <img src="assets/img/Google_Play_Arrow_logo.svg" alt="" style="height: 24px; width: auto;">
+                Get it on Google Play
               </a>
-
-              <!-- NOTIFY FORM INTEGRATION -->
-              <div class="glass-form-container">
-                  <p class="notify-label">Be the first to enter.</p>
-                  <form id="notify-form"
-                        action="https://docs.google.com/forms/d/e/1FAIpQLSfEGjTrmMqE4OFPGaKR1rsDjWqC8m-WmqAmYzJ0jVoJm7OWew/formResponse"
-                        method="POST"
-                        target="hidden_iframe"
-                        onsubmit="submitted=true;">
-                    
-                    <div class="input-group glass-input-group">
-                      <input type="email" 
-                             name="entry.1370192643" 
-                             class="glass-input" 
-                             placeholder="Enter your email" 
-                             required>
-                      
-                      <button type="submit" class="glass-btn-icon" aria-label="Notify Me">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                      </button>
-                    </div>
-                  </form>
-
-                  <div id="success-message" class="success-message" style="display: none;">
-                    <span style="color: #F59E0B; font-size: 1.2rem;">✨</span>
-                    <span style="color: white; font-weight: 500;">You're on the list!</span>
-                  </div>
-
-                  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-              </div>
+              <span class="download-caption">Free to download — Premium unlocks all features</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Form Logic Script -->
-    <script>
-    var submitted = false;
-    document.addEventListener("DOMContentLoaded", function() {
-        var iframe = document.getElementById('hidden_iframe');
-        if(iframe){
-            iframe.onload = function() {
-                if (submitted) {
-                    document.getElementById('notify-form').style.display = 'none';
-                    var msg = document.getElementById('success-message');
-                    msg.style.display = 'flex';
-                    msg.style.animation = 'fadeIn 0.5s ease-out forwards';
-                }
-            };
-        }
-    });
-    </script>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <footer class="footer">
       <div class="container">
@@ -995,7 +1202,7 @@
               <li><a href="#screenshots">Screenshots</a></li>
               <li><a href="#security">Security</a></li>
               <li><a href="#faq">FAQ</a></li>
-              <li><a href="#play">Download</a></li>
+              <li><a href="https://play.google.com/store/apps/details?id=com.mydeardiaryjournal.app&hl=en_IN" target="_blank" rel="noopener">Download</a></li>
             </ul>
           </div>
 

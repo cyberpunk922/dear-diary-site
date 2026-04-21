@@ -22,8 +22,11 @@
     --bg-deep-navy: #0F121C;  /* Primary Dark Mode Background */
     --bg-cream: #FFFDF5;      /* Primary Light Mode Background */
     
-    /* Accents */
-    --accent-gold: #F59E0B;   /* The Glow */
+    /* Accents — Antique Metallic Gold System */
+    --accent-gold: #D4AF37;          /* True antique gold base */
+    --gold-highlight: #FFDF73;       /* Bright catch light */
+    --gold-shadow: #996515;          /* Deep warm shadow */
+    --gold-gradient: linear-gradient(135deg, #FFDF73 0%, #D4AF37 50%, #996515 100%);
     
     /* Glassmorphism System */
     --glass-surface: rgba(255, 255, 255, 0.05);
@@ -81,7 +84,7 @@ img, svg, picture, video {
     
     /* Glassmorphism Redefined for Light Mode */
     --glass-surface: rgba(255, 255, 255, 0.65); /* Milky/Frosted Glass */
-    --glass-border: rgba(245, 158, 11, 0.15); /* Subtle Gold Rim */
+    --glass-border: rgba(212, 175, 55, 0.15); /* Subtle Gold Rim */
     
     /* Depth */
     --card-shadow: 0 10px 40px -10px rgba(62, 39, 35, 0.15); /* Warm Shadow */
@@ -234,7 +237,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .highlight-gold {
-    background: linear-gradient(135deg, var(--accent-gold) 0%, #ff6f00 100%);
+    background: var(--gold-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
@@ -262,7 +265,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 50px;
     transition: all 0.3s ease;
     
-    background: rgba(245, 158, 11, 0.2);
+    background: rgba(212, 175, 55, 0.2);
     border: 1px solid var(--accent-gold);
     color: var(--accent-gold);
     backdrop-filter: blur(5px);
@@ -271,7 +274,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-glass:hover {
     background: var(--accent-gold);
     color: var(--bg-deep-navy); /* Dark text on gold bg */
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
     transform: translateY(-2px);
 }
 
@@ -304,7 +307,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 
         inset 0 0 4px rgba(255,255,255,0.2), 
         0 20px 40px rgba(0,0,0,0.6),
-        0 0 60px rgba(245, 158, 11, 0.25); /* Gold glow moved here */
+        0 0 60px rgba(212, 175, 55, 0.25); /* Gold glow moved here */
     border: 2px solid #333;
     overflow: hidden;
     transform: rotateY(-5deg) rotateX(5deg); /* Slight 3D tilt */
@@ -576,7 +579,7 @@ h1, h2, h3, h4, h5, h6 {
 .lock-visual-large {
     width: 120px;
     height: 120px;
-    filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.2));
+    filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.2));
     transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .tile-privacy:hover .lock-visual-large { transform: scale(1.1) rotate(-5deg); }
@@ -605,7 +608,7 @@ h1, h2, h3, h4, h5, h6 {
 
 [data-theme="light"] .header {
     background: rgba(255, 255, 255, 0.75); /* White Frosted Glass */
-    border-bottom: 1px solid rgba(245, 158, 11, 0.15); /* Gold Rim */
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15); /* Gold Rim */
 }
 
 .header.scrolled {
@@ -805,14 +808,20 @@ h1, h2, h3, h4, h5, h6 {
 .section-title h2 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 16px; color: var(--text-primary); }
 .section-title p { font-size: 1.1rem; opacity: 0.7; max-width: 600px; margin: 0 auto; }
 .section-actions { margin-top: 24px; }
-.btn-primary { 
-    background: var(--accent-gold); 
-    color: var(--bg-deep-navy); 
-    padding: 12px 24px; 
-    border-radius: 50px; 
-    text-decoration: none; 
-    font-weight: 600; 
+.btn-primary {
+    background: var(--gold-gradient);
+    color: #2D1B14;
+    padding: 12px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
     display: inline-block;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.35);
 }
 
 /* --- STATS SECTION --- */
@@ -1026,7 +1035,7 @@ h1, h2, h3, h4, h5, h6 {
 .why-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.08); }
 .why-icon {
     width: 48px; height: 48px;
-    background: rgba(245, 158, 11, 0.2);
+    background: rgba(212, 175, 55, 0.2);
     color: var(--accent-gold);
     border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
@@ -1093,7 +1102,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* Device Selector Patch */
 /* Device Selector - Premium Pill Style */
-.device-selector { display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 64px; } .device-selector-label { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; } .device-toggle { display: inline-flex; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); padding: 6px; border-radius: 50px; position: relative; backdrop-filter: blur(8px); } .device-toggle-btn { background: transparent; border: none; color: var(--text-secondary); padding: 10px 24px; border-radius: 40px; cursor: pointer; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 10px; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); } .device-toggle-btn svg { width: 18px; height: 18px; opacity: 0.5; transition: opacity 0.3s; } .device-toggle-btn:hover { color: var(--text-primary); background: var(--glass-surface); } .device-toggle-btn.active { background: var(--bg-deep-navy); color: var(--accent-gold); box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(245, 158, 11, 0.2); } .device-toggle-btn.active svg { opacity: 1; stroke: var(--accent-gold); }
+.device-selector { display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 64px; } .device-selector-label { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; } .device-toggle { display: inline-flex; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); padding: 6px; border-radius: 50px; position: relative; backdrop-filter: blur(8px); } .device-toggle-btn { background: transparent; border: none; color: var(--text-secondary); padding: 10px 24px; border-radius: 40px; cursor: pointer; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 10px; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); } .device-toggle-btn svg { width: 18px; height: 18px; opacity: 0.5; transition: opacity 0.3s; } .device-toggle-btn:hover { color: var(--text-primary); background: var(--glass-surface); } .device-toggle-btn.active { background: var(--bg-deep-navy); color: var(--accent-gold); box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(212, 175, 55, 0.2); } .device-toggle-btn.active svg { opacity: 1; stroke: var(--accent-gold); }
 /* ========================================= 
    10. LIGHTBOX & MODAL SYSTEM (REFINED)
    ========================================= */ 
@@ -1236,4 +1245,186 @@ dialog.modal::backdrop {
     z-index: 20; 
 } 
 .shot-zoom:hover { transform: scale(1.1) rotate(45deg); }
+
+/* =========================================
+   NEW FEATURE DEEP-DIVE SECTIONS
+   ========================================= */
+
+/* Feature deep-dive section label (Premium / Free) */
+.feature-section-label {
+    display: inline-block;
+    padding: 5px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    background: var(--gold-gradient);
+    color: #2D1B14;
+}
+
+/* Mood Families responsive grid */
+.mood-families-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+}
+@media (min-width: 768px) {
+    .mood-families-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+.mood-family-card {
+    background: var(--glass-surface);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 20px 12px;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.mood-family-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+.mood-family-emoji { font-size: 1.75rem; display: block; margin-bottom: 8px; }
+.mood-family-name { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.mood-family-desc { font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4; }
+
+/* Privacy hero bullets grid */
+.privacy-bullets-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 40px;
+}
+@media (min-width: 768px) { .privacy-bullets-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.privacy-bullet-card {
+    background: var(--glass-surface);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: border-color 0.3s;
+}
+.privacy-bullet-card:hover { border-color: rgba(212, 175, 55, 0.25); }
+.privacy-bullet-icon {
+    width: 38px; height: 38px; min-width: 38px;
+    background: rgba(212, 175, 55, 0.12);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent-gold); font-size: 1.1rem; flex-shrink: 0;
+}
+.privacy-bullet-card strong { display: block; color: var(--text-primary); margin-bottom: 4px; font-size: 0.9rem; }
+.privacy-bullet-card span { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
+
+/* Privacy pull-quote */
+.privacy-pull-quote {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-style: italic;
+    color: var(--text-primary);
+    margin: 56px auto 16px;
+    max-width: 700px;
+    line-height: 1.3;
+}
+
+/* Premium section card */
+.premium-card {
+    background: linear-gradient(135deg, rgba(255,223,115,0.07), rgba(212,175,55,0.04), rgba(153,101,21,0.07));
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 24px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+}
+.premium-card::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.premium-features-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 32px 0;
+}
+@media (min-width: 768px) { .premium-features-list { grid-template-columns: 1fr 1fr; } }
+
+.premium-features-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+    padding: 4px 0;
+    color: var(--text-primary);
+}
+.premium-check {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* Gold download button */
+.btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 36px;
+    background: var(--gold-gradient);
+    color: #2D1B14;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    transition: all 0.3s ease;
+}
+.btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 40px rgba(212, 175, 55, 0.4);
+}
+
+/* Download CTA caption */
+.download-caption {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* Security section gold outline button */
+.btn-gold-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    background: transparent;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+.btn-gold-outline:hover {
+    background: var(--accent-gold);
+    color: #2D1B14;
+}
 

@@ -1,0 +1,575 @@
+/* ================================================
+   REDESIGN.CSS — VISUAL RENAISSANCE
+   Dear Diary · April 2026
+
+   Cinematic, literary, quietly beautiful.
+   Every element earns its place.
+   ================================================ */
+
+
+/* ─── 1. GLOBAL RHYTHM ─────────────────────── */
+
+body { line-height: 1.7; }
+
+.section { padding: 100px 0; }
+
+/* All glass panels need relative positioning for inner glows */
+.glass-panel { position: relative; }
+
+
+/* ─── 2. TYPOGRAPHY SCALE ───────────────────── */
+
+.h1-hero {
+    font-size: clamp(3rem, 5.5vw, 5.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+}
+
+.section-title h2,
+.section-title > div h2 {
+    font-size: clamp(1.9rem, 3vw, 2.75rem);
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+}
+
+.shot-copy h3 {
+    font-size: clamp(1.75rem, 2.8vw, 2.4rem);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+}
+
+.why-title { font-size: 1.15rem; letter-spacing: -0.01em; }
+
+
+/* ─── 3. NAV — CLEAN & TIGHT ───────────────── */
+
+@media (min-width: 900px) {
+    .nav-links {
+        gap: 20px;
+        padding: 10px 22px;
+    }
+    .nav-links a {
+        font-size: 0.88rem;
+        white-space: nowrap;
+        letter-spacing: 0.1px;
+    }
+}
+
+
+/* ─── 4. HERO ───────────────────────────────── */
+
+/* Cinematic glow orb behind phone */
+.hero-visual::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.13) 0%, transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-cta .btn-glass {
+    padding: 18px 42px;
+    font-size: 1.05rem;
+    letter-spacing: 0.3px;
+    border-radius: 12px;
+}
+
+.sub-hero {
+    font-size: 1.15rem;
+    line-height: 1.75;
+}
+
+
+/* ─── 5. STATS ──────────────────────────────── */
+
+.stat-number {
+    font-size: clamp(2.8rem, 4vw, 4rem);
+    font-weight: 700;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.stat-description {
+    font-size: 0.85rem;
+    opacity: 0.55;
+    margin-top: 4px;
+}
+
+.stat-card {
+    position: relative;
+    padding-bottom: 36px;
+}
+
+.stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 70%;
+    height: 1px;
+    background: var(--gold-gradient);
+    opacity: 0.35;
+    border-radius: 1px;
+}
+
+
+/* ─── 6. BENTO TILES ────────────────────────── */
+
+.bento-tile {
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.bento-tile:hover {
+    border-color: rgba(212, 175, 55, 0.28);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(212, 175, 55, 0.06);
+    transform: translateY(-6px);
+}
+
+.bento-tile h3 {
+    font-size: 1.3rem;
+    letter-spacing: -0.01em;
+}
+
+
+/* ─── 7. WHY CARDS ──────────────────────────── */
+
+.why-card {
+    border: 1px solid rgba(212, 175, 55, 0.08);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    padding: 28px;
+}
+
+.why-card:hover {
+    border-color: rgba(212, 175, 55, 0.22);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25), 0 0 20px rgba(212, 175, 55, 0.05);
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.why-icon {
+    background: linear-gradient(135deg, rgba(255, 223, 115, 0.12), rgba(212, 175, 55, 0.06));
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+}
+
+.why-description { opacity: 0.72; line-height: 1.65; }
+
+.why-features {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 16px;
+}
+.why-features li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 8px;
+    opacity: 0.6;
+    font-size: 0.88rem;
+}
+.why-features li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--accent-gold);
+    font-size: 1.3rem;
+    line-height: 1.2;
+}
+
+
+/* ─── 8. FEATURE DEEP-DIVE PANELS ───────────── */
+
+#story-mode .glass-panel,
+#daily-glimpse .glass-panel,
+#mood-tracker .glass-panel {
+    border-color: rgba(212, 175, 55, 0.15);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    padding: 56px 48px;
+}
+
+@media (max-width: 899px) {
+    #story-mode .glass-panel,
+    #daily-glimpse .glass-panel,
+    #mood-tracker .glass-panel {
+        padding: 36px 24px;
+    }
+}
+
+/* Cards inside feature sections — subtler */
+#story-mode .why-card,
+#daily-glimpse .why-card,
+#mood-tracker .why-card {
+    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(212, 175, 55, 0.09);
+    padding: 22px;
+}
+
+#story-mode .why-card:hover,
+#daily-glimpse .why-card:hover,
+#mood-tracker .why-card:hover {
+    background: rgba(212, 175, 55, 0.05);
+    border-color: rgba(212, 175, 55, 0.22);
+}
+
+/* Feature section headings */
+#story-mode h2,
+#daily-glimpse h2,
+#mood-tracker h2 {
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+
+/* ─── 9. MOOD FAMILY CARDS ──────────────────── */
+
+.mood-family-card {
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    cursor: default;
+}
+
+.mood-family-card:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.mood-family-emoji { font-size: 2rem; }
+.mood-family-name { font-size: 0.82rem; }
+.mood-family-desc { font-size: 0.7rem; }
+
+
+/* ─── 10. PRIVACY SECTION ───────────────────── */
+
+/* Subtle dark depth to the section */
+#security {
+    position: relative;
+}
+#security::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(10, 20, 40, 0.5) 0%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+}
+#security .container { position: relative; z-index: 1; }
+
+/* Gold gradient pull-quote */
+.privacy-pull-quote {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.privacy-bullet-card {
+    transition: all 0.3s ease;
+}
+.privacy-bullet-card:hover {
+    border-color: rgba(212, 175, 55, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ─── 11. PREMIUM SECTION ───────────────────── */
+
+.premium-card {
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.15);
+    padding: 56px 48px;
+}
+
+@media (max-width: 899px) {
+    .premium-card { padding: 36px 24px; }
+}
+
+.premium-features-list {
+    margin: 36px 0;
+}
+
+.premium-features-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 1.02rem;
+}
+
+.premium-features-list li:last-child {
+    border-bottom: none;
+}
+
+
+/* ─── 12. DOWNLOAD SECTION ──────────────────── */
+
+.finale-card {
+    border-color: rgba(212, 175, 55, 0.2);
+    box-shadow: 0 0 80px rgba(212, 175, 55, 0.07), 0 40px 100px rgba(0, 0, 0, 0.35);
+    padding: 56px 48px;
+}
+
+@media (max-width: 899px) {
+    .finale-card { padding: 36px 24px; }
+}
+
+/* Two-column layout for the finale */
+.finale-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 60px;
+    align-items: center;
+}
+
+@media (max-width: 899px) {
+    .finale-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    .trust-sigils { justify-content: center; }
+    .finale-action {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.finale-text h2 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.trust-sigils {
+    display: flex;
+    gap: 20px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+}
+
+.trust-sigil {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    opacity: 0.65;
+}
+
+.trust-sigil svg {
+    width: 18px;
+    height: 18px;
+    color: var(--accent-gold);
+    flex-shrink: 0;
+}
+
+
+/* ─── 13. FAQ ───────────────────────────────── */
+
+.faq { max-width: 760px; }
+
+.faq-item {
+    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+    padding: 0;
+}
+
+.faq-item summary {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    padding: 22px 0 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    gap: 16px;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+    font-weight: 300;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    line-height: 1;
+}
+
+.faq-item[open] > summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-body {
+    padding: 0 0 24px;
+    opacity: 0.72;
+    line-height: 1.75;
+}
+
+
+/* ─── 14. LIGHT MODE POLISH ─────────────────── */
+
+[data-theme="light"] .glass-panel {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(212, 175, 55, 0.2);
+    box-shadow: 0 8px 40px rgba(62, 39, 35, 0.07);
+}
+
+[data-theme="light"] .bento-tile {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(212, 175, 55, 0.14);
+    box-shadow: 0 4px 20px rgba(62, 39, 35, 0.07);
+}
+
+[data-theme="light"] .bento-tile:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(212, 175, 55, 0.28);
+    box-shadow: 0 20px 60px rgba(62, 39, 35, 0.12);
+}
+
+[data-theme="light"] .why-card {
+    background: rgba(255, 255, 255, 0.78);
+    border-color: rgba(212, 175, 55, 0.14);
+    box-shadow: 0 4px 20px rgba(62, 39, 35, 0.06);
+}
+
+[data-theme="light"] .why-card:hover {
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 20px 50px rgba(62, 39, 35, 0.11);
+}
+
+[data-theme="light"] .mood-family-card {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(212, 175, 55, 0.2);
+}
+
+[data-theme="light"] .privacy-bullet-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(212, 175, 55, 0.2);
+    box-shadow: 0 4px 20px rgba(62, 39, 35, 0.05);
+}
+
+[data-theme="light"] .premium-card {
+    background: linear-gradient(135deg, rgba(255, 223, 115, 0.1), rgba(212, 175, 55, 0.06), rgba(153, 101, 21, 0.08));
+    border-color: rgba(212, 175, 55, 0.28);
+    box-shadow: 0 40px 80px rgba(62, 39, 35, 0.1), 0 0 0 1px rgba(212, 175, 55, 0.18);
+}
+
+[data-theme="light"] .finale-card {
+    background: rgba(255, 255, 255, 0.82);
+    border-color: rgba(212, 175, 55, 0.22);
+    box-shadow: 0 40px 80px rgba(62, 39, 35, 0.09);
+}
+
+[data-theme="light"] #story-mode .glass-panel,
+[data-theme="light"] #daily-glimpse .glass-panel,
+[data-theme="light"] #mood-tracker .glass-panel {
+    background: rgba(255, 255, 255, 0.78);
+    border-color: rgba(212, 175, 55, 0.18);
+    box-shadow: 0 30px 80px rgba(62, 39, 35, 0.1);
+}
+
+[data-theme="light"] #story-mode .why-card,
+[data-theme="light"] #daily-glimpse .why-card,
+[data-theme="light"] #mood-tracker .why-card {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(212, 175, 55, 0.14);
+}
+
+[data-theme="light"] .faq-item {
+    border-bottom-color: rgba(212, 175, 55, 0.2);
+}
+
+[data-theme="light"] #security::before {
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(245, 241, 230, 0.6) 0%, transparent 80%);
+}
+
+[data-theme="light"] .stat-card::after { opacity: 0.5; }
+
+
+/* ─── 15. MICRO-DETAILS ─────────────────────── */
+
+/* Shot eyebrow — crisper */
+.shot-eyebrow {
+    font-size: 0.76rem;
+    letter-spacing: 2.5px;
+}
+
+/* Chip — more refined */
+.chip {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border-radius: 50px;
+    padding: 5px 14px;
+}
+
+/* Feature section label */
+.feature-section-label {
+    font-size: 0.76rem;
+    letter-spacing: 1.8px;
+}
+
+/* Pillar badges */
+.pillar-badge {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 5px 14px;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* Shot points checkmarks */
+.shot-points li::before {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Section title sub-line */
+.section-title p { font-size: 1.05rem; }
+
+/* Footer brand heading */
+.footer-brand h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+/* Download caption */
+.download-caption {
+    letter-spacing: 0.2px;
+    font-size: 0.82rem;
+}
